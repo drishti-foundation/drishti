@@ -4,7 +4,9 @@ import sys
 import time
 from flask_cors import CORS
 from fpdf import FPDF
-
+from janitor import janitor
+import pickle
+import webbrowser
 from flask import jsonify, request, render_template, send_from_directory
 
 from werkzeug.datastructures import ImmutableMultiDict
@@ -21,7 +23,7 @@ CORS(app)
 
 LINE_HEIGHT = 10
 TITLE_HEIGHT = 40
-LINE_LENGTH = 60
+LINE_LENGTH = 40
 
 # SECTION Routes
 
@@ -43,16 +45,23 @@ def get_pdf_translate():
     print(list(request.files.keys()))
     input_pdf = request.files["file"]
 
-    english_text = formatText(pdf_convert(input_pdf, "en"), 'en')
+    input_pdf.save("out.pdf")
+        
+
+    english_text = pdf_convert("en")
     hindi_text = nmt(english_text)
-    braille = get_braille(hindi_text)
+    braille = janitor(get_braille(hindi_text))
+    
+    
+
+    print("Braille: ", braille)
 
     output_pdf = FPDF()
     output_pdf.add_font('font', '', 'font.ttf', uni=True)
     output_pdf.set_font('font', '', 14)
     output_pdf.add_page()
 
-    output_pdf.write(TITLE_HEIGHT, "BRAILLE")
+    output_pdf.write(TITLE_HEIGHT, "Braille")
     output_pdf.ln(LINE_HEIGHT*2)
 
     for text in [braille[(i-1)*LINE_LENGTH:i*LINE_LENGTH] for i in range(1, round(len(braille)/LINE_LENGTH))]:
@@ -70,3 +79,4 @@ def get_pdf(pdf_name):
     return send_from_directory("downloads", pdf_name, as_attachment=True)
 
 app.run(host="0.0.0.0")
+
