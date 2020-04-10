@@ -1,0 +1,41 @@
+@import "./variables";
+
+.nav-bar {
+  @include flex-box(space-between);
+
+  width: 100vw;
+  height: 12vh;
+  background-color: $lightbg;
+
+  img {
+    margin-left: 3vw;
+    height: 105%;
+  }
+
+  .link-wrapper {
+    @include flex-box(space-between);
+
+    width: 20vw;
+    margin-right: 3vw;
+  }
+
+  .link {
+    @include flex-box;
+    @include trans(background-color);
+
+    width: 8.5vw;
+    padding: 1.2% 3%;
+    height: 6vh;
+    border-radius: 0.5vh;
+    border: 2px solid $highlight;
+
+    &.selected {
+      background-color: $highlight;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $lightHighlight;
+    }
+  }
+}
