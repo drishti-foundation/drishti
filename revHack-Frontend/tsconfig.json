@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "paths": {
+      "~*": ["./src/*"],
+      "styles": ["./src/styles"],
+      "shared": ["./src/shared"],
+      "pics": ["./src/pics"]
+    }
+  },
+  "include": ["global.d.ts"],
+  "exclude": ["node_modules"]
+}
