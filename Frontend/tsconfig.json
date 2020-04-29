@@ -4,14 +4,14 @@
     "jsx": "react",
     "baseUrl": ".",
     "moduleResolution": "node",
-    "rootDir": "src",
+    "rootDir": ".",
     "paths": {
       "~*": ["./src/*"],
-      "styles": ["./src/styles"],
-      "shared": ["./src/shared"],
-      "pics": ["./src/pics"]
+      "#styles*": ["./src/styles/*"],
+      "#shared*": ["./src/shared/*"],
+      "#pics*": ["./src/pics/*"]
     }
   },
-  "include": ["global.d.ts"],
+  "include": ["global.d.ts", "./declarations.d.ts"],
   "exclude": ["node_modules"]
 }

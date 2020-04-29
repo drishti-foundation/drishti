@@ -1,25 +1,24 @@
 import * as React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import Button from "./Button";
+
+import { ENG, HIN } from "#shared/constants";
 
 import drishti from "./drishti.png";
 
-function NavBar({ location }) {
+interface NavBarProps {
+  setEng: () => void;
+  setHin: () => void;
+  lang: number;
+}
+
+function NavBar({ lang, setEng, setHin }: NavBarProps) {
   return (
     <div className="nav-bar">
       <img src={drishti} alt="Logo" />
-      <div className="link-wrapper">
-        <Link
-          className={`link ${location.pathname !== "/about" ? "selected" : ""}`}
-          to="/home"
-        >
-          Home
-        </Link>
-        <Link
-          className={`link ${location.pathname === "/about" ? "selected" : ""}`}
-          to="/about"
-        >
-          About
-        </Link>
+      <div className="btn-wrapper">
+        <Button name="English Braille" selected={lang === ENG} onClick={setEng} />
+        <Button name="Hindi Braille" selected={lang === HIN} onClick={setHin} />
       </div>
     </div>
   );

@@ -12,30 +12,31 @@
     height: 105%;
   }
 
-  .link-wrapper {
+  .btn-wrapper {
     @include flex-box(space-between);
 
     width: 20vw;
     margin-right: 3vw;
   }
 
-  .link {
+  .btn {
     @include flex-box;
     @include trans(background-color);
 
     width: 8.5vw;
-    padding: 1.2% 3%;
-    height: 6vh;
+    padding: 0.5rem 1rem;
+    // height: 6vh;
     border-radius: 0.5vh;
     border: 2px solid $highlight;
+    margin: 0;
 
     &.selected {
-      background-color: $highlight;
+      background-color: $lightHighlight;
     }
 
     &:hover {
       cursor: pointer;
-      background-color: $lightHighlight;
+      background-color: lighten($lightHighlight, 5%);
     }
   }
 }

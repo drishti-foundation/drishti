@@ -1,3 +1,13 @@
-// declare function require(path: string);
-declare module "*.jpg";
-declare module "*.png";
+declare module "*.jpg" {
+  const value: any;
+  export = value;
+}
+declare module "*.png" {
+  const value: any;
+  export = value;
+}
+
+declare module "*.svg" {
+  const value: any;
+  export = value;
+}

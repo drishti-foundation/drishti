@@ -1,39 +1,43 @@
 import * as React from "react";
 import { useState } from "react";
 
-import { HIN, ENG } from "/shared/constants";
-import Button from "/shared/Button";
-import FileUpload from "/shared/FileUpload";
+import { ROUTE, HIN, ENG } from "#shared/constants";
+import Button from "#shared/Button";
+import FileUpload from "#shared/FileUpload";
 
 import Download from "./Download";
 
-function Home() {
-  const [lang, setLang] = useState(ENG);
+interface HomeProps {
+  lang: number;
+}
+
+function Home({ lang }: HomeProps) {
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState("");
   const [link, setLink] = useState("");
 
   const submit = async () => {
-    let route = "";
-    switch (lang) {
-      case HIN:
-        route = "hindi";
-      case ENG:
-      default:
-        route = "english";
-    }
-
     let data = new FormData();
 
+    let language = "";
+
+    switch (lang) {
+      case HIN:
+        language = "hi";
+      case ENG:
+      default:
+        language = "en";
+    }
     data.append("file", file);
+    data.append("lang", language);
 
     setProgress("Converting...");
 
-    console.log({ data });
+    console.log({ data: Array.from(data.entries()), ROUTE });
 
-    let response = await fetch(`/${route}`, {
+    let response = await fetch(`/${ROUTE}`, {
       method: "POST",
-      body: data
+      body: data,
     });
 
     let response_json = await response.json();
@@ -54,13 +58,11 @@ function Home() {
 
   return (
     <>
-      <FileUpload setFile={setFile} onDrop={list => setFile(list[0])} />
+      <FileUpload setFile={setFile} onDrop={(list) => setFile(list[0])} />
       <p className="file-name">{p_value}</p>
       <Button name="Submit" onClick={submit} className="submit-btn" />
       <p className="file-name">{progress}</p>
-      {link.length ? (
-        <Download className="download" link={link} onClick={() => setLink("")} />
-      ) : null}
+      {link.length ? <Download className="download" link={link} onClick={() => setLink("")} /> : null}
     </>
   );
 }

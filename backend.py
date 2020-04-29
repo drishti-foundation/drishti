@@ -1,24 +1,16 @@
+import os, sys, time
 import flask
-import os
-import sys
-import time
-from flask_cors import CORS
-from fpdf import FPDF
-from janitor import janitor
-import pickle
-import webbrowser
 from flask import jsonify, request, render_template, send_from_directory
+from fpdf import FPDF
 
-from werkzeug.datastructures import ImmutableMultiDict
-
+from janitor import janitor
 from pdfConverter import pdf_convert
 from textFormatter import formatText
 from nmt import nmt
 from map_encoding import get_braille
 
 path = os.path.abspath("static")
-app = flask.Flask("__main__", template_folder=path)
-CORS(app)
+app = flask.Flask(__name__, template_folder=path)
 
 MAX_LENGTH = 2000
 LINE_HEIGHT = 10
@@ -35,15 +27,14 @@ def main():
     return render_template("index.html")
 
 
-@app.route("/english", methods=["GET", "POST", "OPTIONS"])
+@app.route("/braille", methods=["GET", "POST"])
 def get_pdf_translate():
-
-    data = dict(request.files)
-    print(data)
     if request.method[0].lower() == "o":
         return ""
-    print(list(request.files.keys()))
     input_pdf = request.files["file"]
+    lang = request.form["lang"]
+
+    print("[LANG]:   ", lang)
 
     input_pdf.save("out.pdf")
         
@@ -54,19 +45,13 @@ def get_pdf_translate():
         c = 0
         for i in range((len(english_text)//MAX_LENGTH)+1):
             ceil = min(MAX_LENGTH*(i+1), len(english_text))
-            print("[LENGTH OF SUB GOOGLETRANS]", len(english_text[MAX_LENGTH*(i):ceil]))
             text += nmt(english_text[MAX_LENGTH*(i):ceil])
     else:
         text = nmt(english_text)
 
-            
 
     hindi_text = text
     braille = janitor(get_braille(hindi_text))
-    
-    
-
-    print("Braille: ", braille)
 
     output_pdf = FPDF()
     output_pdf.add_font('font', '', 'font.ttf', uni=True)
@@ -90,5 +75,6 @@ def get_pdf_translate():
 def get_pdf(pdf_name):
     return send_from_directory("downloads", pdf_name, as_attachment=True)
 
-app.run(host="0.0.0.0")
+if __name__ == "__main__":
+    app.run(debug=True)
 

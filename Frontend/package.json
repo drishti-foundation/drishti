@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "watch": "parcel --port=3000 ./src/index.html",
+    "prebuild": "rm -rf ../static",
     "build": "parcel build --out-dir=../static --public-url=/static ./src/index.html"
   },
   "dependencies": {
@@ -26,5 +27,10 @@
     "parcel-bundler": "^1.12.4",
     "sass": "^1.24.5",
     "typescript": "^3.7.5"
+  },
+  "alias": {
+    "#shared": "./src/shared",
+    "#styles": "./src/styles",
+    "#pics": "./src/pics"
   }
 }

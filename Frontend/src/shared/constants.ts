@@ -1,3 +1,3 @@
-export const HIN = 0;
-export const ENG = 1;
-export const API_URL = "http://localhost:5000";
+export const ROUTE = "braille";
+export const ENG = 0;
+export const HIN = 1;
