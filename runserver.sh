@@ -5,5 +5,5 @@ cd Frontend
 yarn build
 cd ..
 echo "Starting Server..."
-python backend.py
+python3 backend.py
 
