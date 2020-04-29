@@ -20,7 +20,7 @@ path = os.path.abspath("static")
 app = flask.Flask("__main__", template_folder=path)
 CORS(app)
 
-
+MAX_LENGTH = 2000
 LINE_HEIGHT = 10
 TITLE_HEIGHT = 40
 LINE_LENGTH = 40
@@ -47,9 +47,21 @@ def get_pdf_translate():
 
     input_pdf.save("out.pdf")
         
-
+    text = ""
     english_text = pdf_convert("en")
-    hindi_text = nmt(english_text)
+    print("[LENGTH OF TEXT]", len(english_text))
+    if len(english_text) >= MAX_LENGTH:
+        c = 0
+        for i in range((len(english_text)//MAX_LENGTH)+1):
+            ceil = min(MAX_LENGTH*(i+1), len(english_text))
+            print("[LENGTH OF SUB GOOGLETRANS]", len(english_text[MAX_LENGTH*(i):ceil]))
+            text += nmt(english_text[MAX_LENGTH*(i):ceil])
+    else:
+        text = nmt(english_text)
+
+            
+
+    hindi_text = text
     braille = janitor(get_braille(hindi_text))
     
     

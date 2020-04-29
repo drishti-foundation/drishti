@@ -1,6 +1,4 @@
-#! /bin/bash
-
-#cd Frontend
+#!/bin/bash
 #dir=`pwd`
 #echo "Building $dir..."
 #yarn build
