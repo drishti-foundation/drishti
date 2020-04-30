@@ -1,9 +1,8 @@
-import * as React from "react";
-import { withRouter } from "react-router-dom";
-import Button from "./Button";
+import React from "react";
 
 import { ENG, HIN } from "#shared/constants";
 
+import Button from "./Button";
 import drishti from "./drishti.png";
 
 interface NavBarProps {
@@ -24,4 +23,4 @@ function NavBar({ lang, setEng, setHin }: NavBarProps) {
   );
 }
 
-export default withRouter(NavBar);
+export default NavBar;

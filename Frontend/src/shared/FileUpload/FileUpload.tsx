@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useRef } from "react";
 import _FileUpload from "react-file-drop";
 
@@ -13,13 +13,7 @@ function FileUpload({ setFile: pushFile, onDrop, ...props }) {
   return (
     <div onClick={() => ref.current.click()}>
       <_FileUpload {...props} onDrop={onDrop} />
-      <input
-        type="file"
-        name="file"
-        ref={ref}
-        onChange={e => pushFile(e.target.files[0])}
-        style={{ display: "none" }}
-      />
+      <input type="file" name="file" ref={ref} onChange={(e) => pushFile(e.target.files[0])} style={{ display: "none" }} />
     </div>
   );
 }

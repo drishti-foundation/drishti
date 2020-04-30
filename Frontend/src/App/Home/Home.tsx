@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { ROUTE, HIN, ENG } from "#shared/constants";
 import Button from "#shared/Button";

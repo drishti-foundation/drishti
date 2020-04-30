@@ -2,16 +2,17 @@
   "compilerOptions": {
     "allowJs": true,
     "jsx": "react",
-    "baseUrl": ".",
     "moduleResolution": "node",
-    "rootDir": ".",
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "rootDir": "./src",
     "paths": {
       "~*": ["./src/*"],
-      "#styles*": ["./src/styles/*"],
-      "#shared*": ["./src/shared/*"],
-      "#pics*": ["./src/pics/*"]
+      "#styles/*": ["./src/styles/*"],
+      "#shared/*": ["./src/shared/*"],
+      "#pics/*": ["./src/pics/*"]
     }
   },
-  "include": ["global.d.ts", "./declarations.d.ts"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "global.d.ts", "./declarations.d.ts"],
   "exclude": ["node_modules"]
 }
