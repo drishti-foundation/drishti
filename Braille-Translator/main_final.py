@@ -1,5 +1,6 @@
 import printer, alphaToBraille, brailleToAlpha
-
+import warnings
+warnings.filterwarnings("ignore") 
 
 def braille_text(inp):
     print(brailleToAlpha.translate(inp))
