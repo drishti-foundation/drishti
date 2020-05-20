@@ -1,5 +1,7 @@
 # Translate alphabet based text to braille.
-import mapAlphaToBraille, mapBrailleToAlpha
+import braille.eng.mapAlphaToBraille as mapAlphaToBraille
+import braille.eng.mapBrailleToAlpha as mapBrailleToAlpha
+
 
 CAPITAL = chr(10272)  # ⠠
 NUMBER = chr(10300)  # ⠼

@@ -1,6 +1,6 @@
 # Tool for printing standard letters and numbers and their respective braille representations.
 
-import mapAlphaToBraille
+import braille.eng.mapAlphaToBraille as mapAlphaToBraille
 
 
 def uppercase_alphabet_utf_codes():
