@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 
-import NavBar from "./NavBar";
 import Home from "./Home";
-
-import { ENG, HIN } from "#shared/constants";
+import About from "./About";
 
 import "#styles/App.scss";
 
 function App() {
-  const [lang, setLang] = useState(ENG);
-
   return (
     <div className="app">
-      <NavBar lang={lang} setHin={() => setLang(HIN)} setEng={() => setLang(ENG)} />
-      <Home lang={lang} />
+      <Switch>
+        <Route path="/demo" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/" component={About} />
+      </Switch>
     </div>
   );
 }

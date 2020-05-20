@@ -5,15 +5,16 @@ import Button from "#shared/Button";
 import FileUpload from "#shared/FileUpload";
 
 import Download from "./Download";
+import NavBar from "./NavBar";
 
-interface HomeProps {
-  lang: number;
-}
+interface HomeProps {}
 
-function Home({ lang }: HomeProps) {
+function Home({}: HomeProps) {
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState("");
   const [link, setLink] = useState("");
+
+  const [lang, setLang] = useState(ENG);
 
   const submit = async () => {
     let data = new FormData();
@@ -57,11 +58,22 @@ function Home({ lang }: HomeProps) {
 
   return (
     <>
+      <NavBar
+        lang={lang}
+        setHin={() => setLang(HIN)}
+        setEng={() => setLang(ENG)}
+      />
       <FileUpload setFile={setFile} onDrop={(list) => setFile(list[0])} />
       <p className="file-name">{p_value}</p>
       <Button name="Submit" onClick={submit} className="submit-btn" />
       <p className="file-name">{progress}</p>
-      {link.length ? <Download className="download" link={link} onClick={() => setLink("")} /> : null}
+      {link.length ? (
+        <Download
+          className="download"
+          link={link}
+          onClick={() => setLink("")}
+        />
+      ) : null}
     </>
   );
 }
