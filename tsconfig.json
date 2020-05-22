@@ -9,6 +9,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["./src/**/*.ts", "global.d.ts"],
+  "include": ["./src/**/*.ts", "global.d.ts", "declarations.d.ts"],
   "exclude": ["./node_modules"]
 }

@@ -1,6 +1,7 @@
 import express from "express";
 import * as path from "path";
-import fileUpload from "express-fileupload";
+import fileUpload, { UploadedFile } from "express-fileupload";
+import { readPdf } from "./pdfHandler";
 
 const app = express();
 const PORT = 5000;
@@ -12,23 +13,33 @@ app.use(fileUpload());
 
 app.use(express.static("static"));
 
-app.get(["/", "/demo", "/about"], (req, res) => res.sendFile("index.html", { root: staticFolder }));
+app.get(["/", "/demo", "/about"], (req, res) =>
+  res.sendFile("index.html", { root: staticFolder })
+);
 
-app.post("/braille/:lang", (req, res) => {
+app.post("/braille/:lang", async (req, res) => {
   try {
-    const file = req.files?.file;
+    let file = req.files?.file as UploadedFile;
     const { lang } = req.params;
 
     if (file === undefined) {
       res.status(500).send("No uploaded file detected.");
+      return;
     }
 
     console.log({ file, lang });
 
-    // TODO stuff with file and lang
+    const pdfText = await readPdf(file.data);
+
+    console.log(pdfText);
+    // TODO Translate
+
+    // TODO Encode
+
+    // TODO write braille to PDF
 
     res.send({
-      route: "downloads/1588170336.3559759.pdf",
+      route: "downloads/1588170336.3559759.pdf", // TODO send new file name
     });
   } catch (err) {
     console.error(err);
