@@ -12,10 +12,19 @@
   padding: 0.9rem 1.8rem;
   background-color: $highlight;
   border-radius: 0.4vh;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: #3c3c3c;
+    cursor: auto;
+
+    &:hover {
+      background-color: #3c3c3c;
+    }
+  }
 
   &:hover {
-    cursor: pointer;
     background-color: $lightHighlight;
   }
 
@@ -28,7 +37,7 @@
   @include trans(background-color);
 
   margin-top: 1vh;
-  padding: 1% 2%;
+  padding: 0.9rem 1.8rem;
   background-color: $highlight;
   border-radius: 0.3vh;
   font-size: 1.2rem;

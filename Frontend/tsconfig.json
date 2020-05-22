@@ -11,7 +11,8 @@
       "#styles/*": ["./src/styles/*"],
       "#shared/*": ["./src/shared/*"],
       "#pics/*": ["./src/pics/*"]
-    }
+    },
+    "strict": true
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx", "global.d.ts", "./declarations.d.ts"],
   "exclude": ["node_modules"]

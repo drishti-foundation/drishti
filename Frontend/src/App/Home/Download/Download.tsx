@@ -7,7 +7,7 @@ interface DownloadProps extends React.DetailedHTMLProps<React.AnchorHTMLAttribut
 
 function Download({ className, link, ...props }: DownloadProps) {
   return (
-    <a {...props} target="_blank" className={className} href={`/${link}`}>
+    <a {...props} download className={className} href={`/${link}`}>
       Download
     </a>
   );

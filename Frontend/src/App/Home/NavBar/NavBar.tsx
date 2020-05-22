@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ENG, HIN } from "#shared/constants";
+import { Language } from "#shared/constants";
 
 import Button from "./Button";
 import drishti from "./drishti.png";
@@ -8,7 +8,7 @@ import drishti from "./drishti.png";
 interface NavBarProps {
   setEng: () => void;
   setHin: () => void;
-  lang: number;
+  lang: Language;
 }
 
 function NavBar({ lang, setEng, setHin }: NavBarProps) {
@@ -16,8 +16,8 @@ function NavBar({ lang, setEng, setHin }: NavBarProps) {
     <div className="nav-bar">
       <img src={drishti} alt="Logo" />
       <div className="btn-wrapper">
-        <Button name="English Braille" selected={lang === ENG} onClick={setEng} />
-        <Button name="Hindi Braille" selected={lang === HIN} onClick={setHin} />
+        <Button name="English Braille" selected={lang === Language.Eng} onClick={setEng} />
+        <Button name="Hindi Braille" selected={lang === Language.Hin} onClick={setHin} />
       </div>
     </div>
   );

@@ -1,19 +1,24 @@
 import React from "react";
 import { useRef } from "react";
-import _FileUpload from "react-file-drop";
+import DrageFileUpload, { IFileDropProps } from "react-file-drop";
 
-interface FileUpload {
-  setFile: Function;
-  onDrop: Function;
+interface FileUploadProps extends IFileDropProps {
+  setFile: (file: File | null) => void;
 }
 
-function FileUpload({ setFile: pushFile, onDrop, ...props }) {
-  let ref = useRef(null);
+function FileUpload({ setFile: pushFile, ...props }: FileUploadProps) {
+  const ref = useRef<HTMLInputElement>(null);
 
   return (
-    <div onClick={() => ref.current.click()}>
-      <_FileUpload {...props} onDrop={onDrop} />
-      <input type="file" name="file" ref={ref} onChange={(e) => pushFile(e.target.files[0])} style={{ display: "none" }} />
+    <div onClick={() => ref.current?.click()} className="file-upload">
+      <DrageFileUpload {...props} onDrop={(files) => files && pushFile(files[0])} />
+      <input
+        type="file"
+        name="file"
+        ref={ref}
+        onChange={(e) => e.target.files && pushFile(e.target.files[0])}
+        style={{ display: "none" }}
+      />
     </div>
   );
 }

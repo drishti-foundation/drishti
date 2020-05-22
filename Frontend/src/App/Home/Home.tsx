@@ -1,79 +1,62 @@
 import React, { useState } from "react";
 
-import { ROUTE, HIN, ENG } from "#shared/constants";
+import { ROUTE, Language } from "#shared/constants";
 import Button from "#shared/Button";
 import FileUpload from "#shared/FileUpload";
 
 import Download from "./Download";
 import NavBar from "./NavBar";
 
-interface HomeProps {}
-
-function Home({}: HomeProps) {
-  const [file, setFile] = useState(null);
+function Home() {
+  const [file, setFile] = useState<File | null>(null);
   const [progress, setProgress] = useState("");
   const [link, setLink] = useState("");
 
-  const [lang, setLang] = useState(ENG);
+  const [lang, setLang] = useState(Language.Eng);
 
   const submit = async () => {
-    let data = new FormData();
+    if (file === null) return;
 
-    let language = "";
+    const data = new FormData();
 
-    switch (lang) {
-      case HIN:
-        language = "hi";
-      case ENG:
-      default:
-        language = "en";
-    }
     data.append("file", file);
-    data.append("lang", language);
 
     setProgress("Converting...");
 
-    console.log({ data: Array.from(data.entries()), ROUTE });
-
-    let response = await fetch(`/${ROUTE}`, {
+    const response = await fetch(`/${ROUTE}/${lang}`, {
       method: "POST",
       body: data,
     });
 
-    let response_json = await response.json();
+    if (response.status !== 200) {
+      setProgress("Errored: " + response.statusText);
+      return;
+    }
 
-    let download_route = response_json.route;
+    const responseJson = await response.json();
 
-    console.log({ response_json, download_route });
+    const downloadRoute = responseJson.route;
+
+    console.log({ responseJson, downloadRoute });
 
     setProgress("");
-    setLink(download_route);
+    setLink(downloadRoute);
   };
 
-  let p_value = "";
+  let pValue = "";
 
   if (file != null && file.name) {
-    p_value = "Selected File: " + file.name;
+    pValue = "Selected File: " + file.name;
   }
 
   return (
     <>
-      <NavBar
-        lang={lang}
-        setHin={() => setLang(HIN)}
-        setEng={() => setLang(ENG)}
-      />
-      <FileUpload setFile={setFile} onDrop={(list) => setFile(list[0])} />
-      <p className="file-name">{p_value}</p>
-      <Button name="Submit" onClick={submit} className="submit-btn" />
+      <NavBar lang={lang} setHin={() => setLang(Language.Hin)} setEng={() => setLang(Language.Eng)} />
+      <FileUpload setFile={setFile} />
+      <p className="file-name">{pValue}</p>
+      <Button name="Submit" onClick={submit} className="submit-btn" disabled={file === null} />
       <p className="file-name">{progress}</p>
-      {link.length ? (
-        <Download
-          className="download"
-          link={link}
-          onClick={() => setLink("")}
-        />
-      ) : null}
+      {link.length ? <Download className="download" link={link} /> : null}
     </>
   );
 }

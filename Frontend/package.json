@@ -1,12 +1,13 @@
 {
-  "name": "RevHack",
+  "name": "drishti-frontend",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "watch": "parcel ./src/index.html",
-    "prebuild": "rm -rf ../static",
-    "build": "parcel build --out-dir=../static --public-url=/static ./src/index.html"
+    "prebuild": "yarn lint && rm -rf ../static",
+    "build": "parcel build --out-dir=../static ./src/index.html",
+    "lint": "cd .. && yarn lint:frontend"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
