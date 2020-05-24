@@ -1,7 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readPdf = void 0;
+exports.writePdf = exports.readPdf = void 0;
+var path_1 = __importDefault(require("path"));
 var pdfreader_1 = require("pdfreader");
+var html_pdf_1 = __importDefault(require("html-pdf"));
+var LINE_HEIGHT = 25;
+var TITLE_HEIGHT = 40;
+var LINE_LENGTH = 40;
 exports.readPdf = function (buffer) {
     return new Promise(function (res) {
         var pdfText = "";
@@ -15,6 +23,17 @@ exports.readPdf = function (buffer) {
             else if (item.text) {
                 pdfText += item.text + " ";
             }
+        });
+    });
+};
+exports.writePdf = function (text, fileName) {
+    return new Promise(function (res) {
+        html_pdf_1.default
+            .create("<h1>Braille</h1><p>" + text + "</p>")
+            .toFile(path_1.default.resolve("downloads", fileName), function (err) {
+            if (err)
+                console.error(err);
+            res();
         });
     });
 };

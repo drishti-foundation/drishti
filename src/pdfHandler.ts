@@ -1,6 +1,8 @@
+import path from "path";
 import { PdfReader } from "pdfreader";
+import pdf from "html-pdf";
 
-export const readPdf = (buffer: Buffer) => {
+export const readPdf = (buffer: Buffer): Promise<string> => {
   return new Promise((res) => {
     let pdfText = "";
 
@@ -16,3 +18,10 @@ export const readPdf = (buffer: Buffer) => {
   });
 };
 
+export const writePdf = (text: string, fileName: string): Promise<void> =>
+  new Promise((res) => {
+    pdf.create(`<h1>Braille</h1><p>${text}</p>`).toFile(path.resolve("downloads", fileName), (err) => {
+      if (err) console.error(err);
+      res();
+    });
+  });

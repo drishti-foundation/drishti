@@ -1,23 +1,4 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -59,49 +40,72 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var path = __importStar(require("path"));
+var path_1 = __importDefault(require("path"));
 var express_fileupload_1 = __importDefault(require("express-fileupload"));
+var googletrans_1 = __importDefault(require("googletrans"));
 var pdfHandler_1 = require("./pdfHandler");
 var app = express_1.default();
 var PORT = 5000;
-var staticFolder = path.resolve("static");
+var MAX_LENGTH = 10000;
+var staticFolder = path_1.default.resolve("static");
 app.use(express_fileupload_1.default());
 app.use(express_1.default.static("static"));
-app.get(["/", "/demo", "/about"], function (req, res) {
-    return res.sendFile("index.html", { root: staticFolder });
-});
+app.get(["/", "/demo", "/about"], function (req, res) { return res.sendFile("index.html", { root: staticFolder }); });
 app.post("/braille/:lang", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var file, lang, pdfText, err_1;
+    var file, lang, pdfText, brailleText, text, toConvert, i, err_1;
     var _a;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _b.trys.push([0, 2, , 3]);
+                _b.trys.push([0, 6, , 7]);
                 file = (_a = req.files) === null || _a === void 0 ? void 0 : _a.file;
                 lang = req.params.lang;
                 if (file === undefined) {
-                    res.status(500).send("No uploaded file detected.");
-                    return [2];
+                    return [2, res.status(500).send("No uploaded file detected.")];
                 }
                 console.log({ file: file, lang: lang });
                 return [4, pdfHandler_1.readPdf(file.data)];
             case 1:
                 pdfText = _b.sent();
-                console.log(pdfText);
-                res.send({
-                    route: "downloads/1588170336.3559759.pdf",
-                });
-                return [3, 3];
+                brailleText = void 0;
+                if (!(lang === "hi")) return [3, 3];
+                text = "";
+                toConvert = [];
+                for (i = 0; i < pdfText.length; i += MAX_LENGTH) {
+                    toConvert.push(pdfText.slice(i, i + MAX_LENGTH));
+                }
+                return [4, Promise.all(toConvert.map(function (text) { return googletrans_1.default(text, "hi"); }))];
             case 2:
+                text = (_b.sent()).map(function (result) { return result.text; }).join();
+                console.log(text);
+                brailleText = text;
+                return [3, 4];
+            case 3:
+                if (lang === "en") {
+                    brailleText = pdfText;
+                }
+                else {
+                    console.error("Unrecognised language", lang);
+                    return [2, res.status(500).send("Bad Language")];
+                }
+                _b.label = 4;
+            case 4: return [4, pdfHandler_1.writePdf(brailleText, file.name)];
+            case 5:
+                _b.sent();
+                res.send({
+                    route: "downloads/" + file.name,
+                });
+                return [3, 7];
+            case 6:
                 err_1 = _b.sent();
                 console.error(err_1);
                 res.status(500).send("Internal server error");
-                return [3, 3];
-            case 3: return [2];
+                return [3, 7];
+            case 7: return [2];
         }
     });
 }); });
 app.get("/downloads/:pdfName", function (req, res) {
-    res.download(path.resolve("downloads", req.params.pdfName));
+    res.download(path_1.default.resolve("downloads", req.params.pdfName));
 });
 app.listen(PORT, function () { return console.info("Listening on port " + PORT); });

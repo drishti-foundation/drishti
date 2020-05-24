@@ -12,14 +12,8 @@ declare module "pdfreader" {
     text: string;
   }
 
-  class PdfReader {
-    parseBuffer(
-      buffer: Buffer,
-      callback: (err: Error, item: Item) => void
-    ): any;
-    parseFileItems(
-      path: PathLike,
-      callback: (err: Error, item: Item) => void
-    ): any;
+  export class PdfReader {
+    parseBuffer(buffer: Buffer, callback: (err: Error, item: Item) => void): any;
+    parseFileItems(path: PathLike, callback: (err: Error, item: Item) => void): any;
   }
 }
