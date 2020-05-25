@@ -39,57 +39,37 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var path_1 = __importDefault(require("path"));
-var express_fileupload_1 = __importDefault(require("express-fileupload"));
-var pdfHandler_1 = require("./pdfHandler");
-var braille_1 = __importDefault(require("./braille"));
-var app = express_1.default();
-var PORT = 5000;
-var staticFolder = path_1.default.resolve("static");
-app.use(express_fileupload_1.default());
-app.use(express_1.default.static("static"));
-app.get(["/", "/demo", "/about"], function (req, res) {
-    return res.sendFile("index.html", { root: staticFolder });
-});
-app.post("/braille/:lang", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var file, lang, pdfText, brailleText, err_1;
-    var _a;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+var googletrans_1 = __importDefault(require("googletrans"));
+var eng_1 = __importDefault(require("./eng"));
+var hin_1 = __importDefault(require("./hin"));
+var MAX_LENGTH = 10000;
+var textToBraille = function (text, lang) { return __awaiter(void 0, void 0, void 0, function () {
+    var toConvert, i;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _b.trys.push([0, 4, , 5]);
-                file = (_a = req.files) === null || _a === void 0 ? void 0 : _a.file;
-                lang = req.params.lang;
-                if (file === undefined) {
-                    return [2, res.status(500).send("No uploaded file detected.")];
+                if (!(lang === "hi")) return [3, 2];
+                toConvert = [];
+                for (i = 0; i < text.length; i += MAX_LENGTH) {
+                    toConvert.push(text.slice(i, i + MAX_LENGTH));
                 }
-                return [4, pdfHandler_1.readPdf(file.data)];
+                return [4, Promise.all(toConvert.map(function (text) { return googletrans_1.default(text, "hi"); }))];
             case 1:
-                pdfText = _b.sent();
-                return [4, braille_1.default(pdfText, lang)];
+                text = (_a.sent())
+                    .map(function (result) { return result.text; })
+                    .join();
+                return [2, hin_1.default(text)];
             case 2:
-                brailleText = _b.sent();
-                if (brailleText === "Failed") {
-                    res.status(500).send("Conversion to Braille Failed.");
+                if (lang === "en") {
+                    return [2, eng_1.default(text)];
                 }
-                return [4, pdfHandler_1.writePdf(brailleText, file.name)];
-            case 3:
-                _b.sent();
-                res.send({
-                    route: "downloads/" + file.name,
-                });
-                return [3, 5];
-            case 4:
-                err_1 = _b.sent();
-                console.error(err_1);
-                res.status(500).send("Internal server error");
-                return [3, 5];
-            case 5: return [2];
+                else {
+                    console.error("Unrecognised language", lang);
+                    return [2, "Failed"];
+                }
+                _a.label = 3;
+            case 3: return [2];
         }
     });
-}); });
-app.get("/downloads/:pdfName", function (req, res) {
-    res.download(path_1.default.resolve("downloads", req.params.pdfName));
-});
-app.listen(PORT, function () { return console.info("Listening on port " + PORT); });
+}); };
+exports.default = textToBraille;

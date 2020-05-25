@@ -20,8 +20,10 @@ export const readPdf = (buffer: Buffer): Promise<string> => {
 
 export const writePdf = (text: string, fileName: string): Promise<void> =>
   new Promise((res) => {
-    pdf.create(`<h1>Braille</h1><p>${text}</p>`).toFile(path.resolve("downloads", fileName), (err) => {
-      if (err) console.error(err);
-      res();
-    });
+    pdf
+      .create(`<h1>Braille</h1><p>${text}</p>`)
+      .toFile(path.resolve("downloads", fileName), (err) => {
+        if (err) console.error(err);
+        res();
+      });
   });

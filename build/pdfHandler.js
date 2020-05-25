@@ -7,9 +7,6 @@ exports.writePdf = exports.readPdf = void 0;
 var path_1 = __importDefault(require("path"));
 var pdfreader_1 = require("pdfreader");
 var html_pdf_1 = __importDefault(require("html-pdf"));
-var LINE_HEIGHT = 25;
-var TITLE_HEIGHT = 40;
-var LINE_LENGTH = 40;
 exports.readPdf = function (buffer) {
     return new Promise(function (res) {
         var pdfText = "";
