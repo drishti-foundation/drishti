@@ -5,21 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writePdf = exports.readPdf = void 0;
 var path_1 = __importDefault(require("path"));
-var pdfreader_1 = require("pdfreader");
 var html_pdf_1 = __importDefault(require("html-pdf"));
+var textract_1 = __importDefault(require("textract"));
 exports.readPdf = function (buffer) {
     return new Promise(function (res) {
-        var pdfText = "";
-        new pdfreader_1.PdfReader().parseBuffer(buffer, function (err, item) {
-            if (err) {
+        return textract_1.default.fromBufferWithMime("application/pdf", buffer, function (err, text) {
+            if (err)
                 console.error(err);
-            }
-            else if (!item) {
-                res(pdfText);
-            }
-            else if (item.text) {
-                pdfText += item.text + " ";
-            }
+            res(text);
         });
     });
 };

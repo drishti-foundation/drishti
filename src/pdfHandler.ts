@@ -1,22 +1,14 @@
 import path from "path";
-import { PdfReader } from "pdfreader";
 import pdf from "html-pdf";
+import textract from "textract";
 
-export const readPdf = (buffer: Buffer): Promise<string> => {
-  return new Promise((res) => {
-    let pdfText = "";
-
-    new PdfReader().parseBuffer(buffer, (err, item) => {
-      if (err) {
-        console.error(err);
-      } else if (!item) {
-        res(pdfText);
-      } else if (item.text) {
-        pdfText += item.text + " ";
-      }
-    });
-  });
-};
+export const readPdf = (buffer: Buffer): Promise<string> =>
+  new Promise((res) =>
+    textract.fromBufferWithMime("application/pdf", buffer, (err, text) => {
+      if (err) console.error(err);
+      res(text);
+    })
+  );
 
 export const writePdf = (text: string, fileName: string): Promise<void> =>
   new Promise((res) => {
