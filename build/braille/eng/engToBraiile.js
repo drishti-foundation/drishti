@@ -10,18 +10,14 @@ var extractWords = function (str) {
     var result = [];
     for (var _i = 0, words_1 = words; _i < words_1.length; _i++) {
         var word = words_1[_i];
-        var temp = word.split("\n");
-        for (var _a = 0, temp_1 = temp; _a < temp_1.length; _a++) {
-            var item = temp_1[_a];
-            result.push(item);
-        }
+        result.push.apply(result, word.split("\n"));
     }
     return result;
 };
 var isBraille = function (char) {
     if (char.length > 1)
         return false;
-    return (mapEngToBraille_1.letters.has(char) ||
+    return (mapEngToBraille_1.braille.letters.includes(char) ||
         mapEngToBraille_1.braille.numbers.includes(char) ||
         mapEngToBraille_1.braille.punctuation.includes(char) ||
         mapEngToBraille_1.braille.contractions.includes(char) ||

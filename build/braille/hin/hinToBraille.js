@@ -5,12 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var mapHinToBraille_1 = __importDefault(require("./mapHinToBraille"));
 var bin2braille = function (s) {
-    var hexstr = parseInt(s.split("").reverse().join(""), 2)
-        .toString(16)
-        .slice(0, 2);
+    var hexstr = parseInt(s.split("").reverse().join(""), 2).toString(16).slice(0, 2);
     var basehex = "0x2800";
     var braillehex = "";
-    if (hexstr.length == 2) {
+    if (hexstr.length === 2) {
         braillehex += basehex.slice(0, 4) + hexstr;
         return parseInt(braillehex);
     }

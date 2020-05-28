@@ -11,10 +11,7 @@ const extractWords = (str: string) => {
   const words = str.split(" ");
   const result: string[] = [];
   for (const word of words) {
-    const temp = word.split("\n");
-    for (const item of temp) {
-      result.push(item);
-    }
+    result.push(...word.split("\n"));
   }
   return result;
 };
@@ -23,7 +20,7 @@ const isBraille = (char: string) => {
   //  Return true if a char is braille.
   if (char.length > 1) return false;
   return (
-    letters.has(char) ||
+    braille.letters.includes(char) ||
     braille.numbers.includes(char) ||
     braille.punctuation.includes(char) ||
     braille.contractions.includes(char) ||

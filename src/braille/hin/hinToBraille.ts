@@ -1,14 +1,12 @@
 import mapHinToBraille from "./mapHinToBraille";
 
 const bin2braille = (s: string) => {
-  const hexstr: string = parseInt(s.split("").reverse().join(""), 2)
-    .toString(16)
-    .slice(0, 2);
+  const hexstr: string = parseInt(s.split("").reverse().join(""), 2).toString(16).slice(0, 2);
 
-  const basehex: string = "0x2800";
-  let braillehex: string = "";
+  const basehex = "0x2800";
+  let braillehex = "";
 
-  if (hexstr.length == 2) {
+  if (hexstr.length === 2) {
     braillehex += basehex.slice(0, 4) + hexstr;
     return parseInt(braillehex);
   } else {
@@ -18,7 +16,7 @@ const bin2braille = (s: string) => {
 };
 
 const binStrBraille = (s: string) => {
-  let brailleChr: string = "";
+  let brailleChr = "";
   for (let i = 0; i < Math.floor(s.length / 6); i++) {
     brailleChr += String.fromCharCode(bin2braille(s.slice(6 * i, 6 * i + 6)));
   }
