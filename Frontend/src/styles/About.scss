@@ -1,0 +1,57 @@
+.about {
+  overflow: hidden;
+}
+
+.banner {
+  width: 100%;
+  position: relative;
+
+  img {
+    width: 100%;
+    user-select: none;
+  }
+
+  .center {
+    @include flex-box($dir: column);
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    h1 {
+      font-size: 20vh;
+      color: white;
+      font-weight: 700;
+      text-shadow: 2px 5px #00000010, -2px -5px #00000010;
+    }
+
+    .btn {
+      color: white;
+    }
+  }
+}
+
+.content {
+  position: relative;
+  top: 2.4rem;
+  max-width: 80%;
+  left: 10%;
+  padding-top: 3rem;
+
+  div {
+    @include flex-box;
+
+    img {
+      min-width: 100vw;
+      position: absolute;
+      left: -20vh;
+      top: 0;
+      z-index: -1;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}

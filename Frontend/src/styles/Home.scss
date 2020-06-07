@@ -10,17 +10,20 @@
 
   margin-top: 3vh;
   padding: 0.9rem 1.8rem;
+  color: rgb(216, 216, 216);
   background-color: $highlight;
   border-radius: 0.4vh;
   font-size: 1.2rem;
   cursor: pointer;
 
   &:disabled {
-    background-color: #3c3c3c;
+    $disable: #959595;
+
+    background-color: $disable;
     cursor: auto;
 
     &:hover {
-      background-color: #3c3c3c;
+      background-color: $disable;
     }
   }
 

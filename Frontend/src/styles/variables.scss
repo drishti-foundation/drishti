@@ -1,8 +1,8 @@
-$background: #252524;
-$lightbg: #2f2f2f;
-$text_color: white;
-$highlight: #3c61a9;
-$lightHighlight: #4277dd;
+$background: #dfdfdf;
+$lightbg: #0b3fa7;
+$text_color: black;
+$highlight: #0342be;
+$lightHighlight: #044dd6;
 
 @mixin flex-box($just: center, $align: center, $dir: row) {
   display: flex;
