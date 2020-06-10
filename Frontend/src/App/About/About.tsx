@@ -13,13 +13,12 @@ function About() {
     if (bannerRef.current !== null) {
       const observer = new IntersectionObserver(
         (entries) => {
-          setShowNav(!entries[0].isIntersecting);
+          setShowNav(entries[0].intersectionRatio < 0.1);
         },
         {
           threshold: 0.1,
         }
       );
-      console.log(bannerRef);
       observer.observe(bannerRef.current);
 
       return () => {

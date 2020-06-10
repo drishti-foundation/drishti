@@ -15,6 +15,7 @@
   height: 6rem;
   background: $lightbg;
   z-index: 1;
+  box-shadow: 0 0.5rem 1rem 0.5rem #00000042;
 
   .logo {
     height: 100%;
@@ -43,14 +44,19 @@
     margin: 0;
     margin-left: 2rem;
     color: white;
+    box-shadow: none;
 
     &.selected {
-      background-color: $lightHighlight;
+      background-color: lighten($lightHighlight, $amount: 5%);
+
+      &:hover {
+        background-color: lighten($lightHighlight, 10%);
+      }
     }
 
     &:hover {
       cursor: pointer;
-      background-color: lighten($lightHighlight, 5%);
+      background-color: $lightHighlight;
     }
   }
 }
