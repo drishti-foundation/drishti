@@ -6,6 +6,10 @@
   left: 0;
   width: 100vw;
   transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  .btn {
+    background: transparent;
+  }
 }
 
 .nav-bar {
@@ -71,12 +75,16 @@
     }
 
     .btn-wrapper {
-      position: absolute;
+      position: fixed;
       bottom: 0;
       width: 100vw;
       height: 10vh;
       background-color: $lightbg;
       margin: 0;
+
+      &.mobile-bg {
+        background-color: $background;
+      }
 
       .btn {
         margin: 0;

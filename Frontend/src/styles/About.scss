@@ -28,32 +28,101 @@
 
     .btn {
       color: white;
+      background-color: $lightbg;
+
+      &:hover {
+        background-color: lighten($lightbg, 10%);
+      }
     }
   }
 }
 
+.reverse {
+  background-color: $lightbg;
+  color: white;
+}
+
 .content {
+  $max-width: 70vw;
+
   position: relative;
-  top: 2.4rem;
-  max-width: 80%;
-  left: 10%;
-  padding-top: 3rem;
 
-  div {
-    @include flex-box;
+  .stats {
+    @include flex-box($just: space-around);
 
-    img {
-      min-width: 100vw;
-      position: absolute;
-      left: -20vh;
-      top: 0;
-      z-index: -1;
+    width: 100vw;
+    height: 40vh;
+    overflow: visible;
+
+    .card {
+      @include flex-box($dir: column);
+
+      width: 30vw;
+      background: linear-gradient(to bottom right, lighten($lightbg, 15%), darken($lightbg, 5%));
+      padding: 4.5rem 2rem;
+      color: white;
+      border-radius: 1rem;
+      box-shadow: 0.5rem 1rem 1.3rem 0.4rem #00000041;
+
+      svg {
+        height: 4rem;
+      }
+
+      h1 {
+        font-size: 10vh;
+      }
+
+      p {
+        color: #eeeeee;
+      }
     }
   }
 
-  p {
-    font-size: 1.2rem;
+  .paragraph {
+    font-size: 1.6rem;
+    margin: 4rem auto;
+    max-width: $max-width;
   }
+
+  .solution-text {
+    padding: 5rem 0;
+    width: 100vw;
+    background: linear-gradient(to bottom right, lighten($lightbg, 15%), darken($lightbg, 5%));
+
+    h1 {
+      font-size: 5.5rem;
+      color: white;
+      padding-left: (100vw - $max-width)/2;
+    }
+
+    .paragraph {
+      color: white;
+    }
+  }
+
+  // div {
+  //   @include flex-box;
+
+  //   p {
+  //     flex: 1;
+  //     padding: 3rem;
+  //     margin: 0rem 3rem;
+  //     font-size: 1.4rem;
+  //   }
+
+  //   img {
+  //     flex: 1;
+  //     width: 50%;
+  //   }
+  // }
+
+  // p {
+  //   font-size: 1.2rem;
+  // }
+
+  // &:last-child {
+  //   margin-bottom: 3rem;
+  // }
 }
 
 @media screen and (max-width: 750px) {
@@ -64,6 +133,34 @@
 
     .btn {
       margin: 0;
+    }
+  }
+
+  .reverse {
+    flex-direction: column-reverse;
+  }
+
+  .content {
+    .stats {
+      flex-direction: column;
+      height: 120vh;
+
+      .card {
+        width: 80vw;
+        padding: 2.6rem 0.4rem;
+      }
+    }
+
+    div {
+      flex-direction: column;
+
+      p {
+        margin: 2rem;
+      }
+
+      img {
+        width: 100%;
+      }
     }
   }
 }

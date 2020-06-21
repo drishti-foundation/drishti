@@ -18,7 +18,7 @@ function NavBar({ lang, setEng, setHin }: NavBarProps) {
       <Link className="logo" to="/">
         <img src={drishti} alt="Logo" />
       </Link>
-      <div className="btn-wrapper">
+      <div className="btn-wrapper mobile-bg">
         <Button name="English Braille" selected={lang === Language.Eng} onClick={setEng} />
         <Button name="Hindi Braille" selected={lang === Language.Hin} onClick={setHin} />
       </div>
