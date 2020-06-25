@@ -50,14 +50,14 @@ function Home() {
   }
 
   return (
-    <>
+    <div className="demo">
       <NavBar lang={lang} setHin={() => setLang(Language.Hin)} setEng={() => setLang(Language.Eng)} />
       <FileUpload setFile={setFile} />
       <p className="file-name">{pValue}</p>
       <Button name="Submit" onClick={submit} className="submit-btn" disabled={file === null} />
       <p className="file-name">{progress}</p>
-      {link.length ? <Download className="download" link={link} /> : null}
-    </>
+      {link.length ? <Download className="download btn" link={link} /> : null}
+    </div>
   );
 }
 

@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 
-document.documentElement.style.setProperty("--vh", window.innerHeight.toString());
+document.documentElement.style.setProperty("--vh", `${window.innerHeight.toString()}px`);
 
 render(
   <BrowserRouter>

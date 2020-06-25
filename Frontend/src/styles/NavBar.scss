@@ -10,6 +10,14 @@
   .btn {
     background: transparent;
   }
+
+  &.-hide {
+    transform: translateY(-100%);
+  }
+
+  &.-show {
+    transform: translateY(0);
+  }
 }
 
 .nav-bar {
@@ -22,7 +30,18 @@
   box-shadow: 0 0.5rem 1rem 0.5rem #00000042;
 
   .logo {
+    @include flex-box;
     height: 100%;
+    margin-left: 3vh;
+
+    img {
+      margin-left: 0;
+    }
+
+    .back {
+      height: 1.5rem;
+      margin-right: 2rem;
+    }
   }
 
   img {
@@ -38,29 +57,54 @@
     margin-right: 3vw;
   }
 
-  .btn {
+  .svg {
+    display: block;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+
+    .unchecked {
+      stroke: white;
+      fill: none;
+      stroke-width: 20;
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: uncheck 0.75s linear forwards;
+    }
+
+    .check {
+      stroke: white;
+      fill: none;
+      stroke-width: 20;
+      stroke-dasharray: 200;
+      stroke-dashoffset: 0;
+      animation: check 0.75s linear forwards;
+    }
+
+    .box {
+      stroke: $background;
+      stroke-width: 7;
+      fill: none;
+    }
+  }
+
+  .btn,
+  .checkbox {
     @include flex-box;
-    @include trans(background-color);
+    @include trans(border);
 
     padding: 0.5rem 1rem;
+    font-size: 1.2rem;
     border-radius: 0.5vh;
-    border: 1px solid white;
     margin: 0;
     margin-left: 2rem;
     color: white;
     box-shadow: none;
-
-    &.selected {
-      background-color: lighten($lightHighlight, $amount: 5%);
-
-      &:hover {
-        background-color: lighten($lightHighlight, 10%);
-      }
-    }
+    border: 1px solid transparent;
 
     &:hover {
       cursor: pointer;
-      background-color: $lightHighlight;
+      border: 1px solid white;
+      background-color: transparent;
     }
   }
 }
@@ -69,6 +113,14 @@
   .nav-bar {
     height: 10vh;
     justify-content: center;
+
+    .logo {
+      margin: 0 1.5vh;
+
+      .back {
+        margin-right: 1rem;
+      }
+    }
 
     img {
       margin: 0;
@@ -88,6 +140,51 @@
 
       .btn {
         margin: 0;
+      }
+    }
+  }
+}
+
+@keyframes check {
+  0% {
+    stroke-dashoffset: -200;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes uncheck {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 200;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .absolute-nav {
+    &.-hide {
+      transform: translateY(0);
+
+      .img-wrapper {
+        transform: translateY(-100%);
+      }
+
+      .btn-wrapper {
+        transform: translateY(100%);
+      }
+    }
+
+    &.-show {
+      .img-wrapper {
+        transform: translateY(0%);
+      }
+
+      .btn-wrapper {
+        bottom: 0;
+        transform: translateY(0%);
       }
     }
   }
