@@ -90,12 +90,14 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
         font-size: 10vh;
         flex: 2;
         color: white;
+        overflow: visible;
       }
 
       p {
         color: #f1f1f1;
         font-size: 1.2rem;
         text-align: center;
+        overflow: visible;
       }
     }
   }
@@ -104,6 +106,7 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     font-size: 1.6rem;
     margin: 3rem auto;
     max-width: $max-width;
+    overflow: visible;
   }
 
   .demo-wrapper {
@@ -150,6 +153,56 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
   .demo-img {
     max-height: 75vh;
     max-width: 70vw;
+  }
+
+  .pic-with-desc {
+    @include flex-box;
+
+    margin: 3rem 0;
+
+    * {
+      flex: 1;
+    }
+
+    img {
+      object-fit: scale-down;
+    }
+
+    p {
+      margin: 3rem;
+      margin-right: 0;
+      font-size: 1.3rem;
+    }
+  }
+
+  .profile {
+    @include flex-box;
+
+    padding: 1.2rem 2.5rem;
+    box-shadow: 0.4rem 0.6rem 0.8rem 0.4rem #0000001a;
+    border-radius: 1rem;
+    margin: 4rem 0;
+
+    &-pic {
+      @include flex-box;
+      flex: 1;
+
+      img {
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+
+    &-main {
+      flex: 6;
+    }
+
+    &-links {
+      @include flex-box($just: space-around);
+      flex: 1;
+    }
   }
 
   .contact-btn {
@@ -209,6 +262,7 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
 
       .btn {
         margin: 0;
+        font-size: 1rem;
       }
     }
   }
@@ -217,7 +271,38 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     flex-direction: column-reverse;
   }
 
+  .paragraph {
+    overflow: visible;
+  }
+
   .content {
+    .pic-with-desc {
+      flex-direction: column;
+      overflow: visible;
+
+      img {
+        width: 100vw;
+      }
+
+      p {
+        margin: 2rem 0;
+      }
+    }
+
+    .profile {
+      flex-direction: column;
+      padding: 2.5rem 0;
+
+      &-main {
+        margin: 2rem 0;
+        text-align: center;
+      }
+
+      &-links {
+        width: 5rem;
+      }
+    }
+
     .stats {
       flex-direction: column;
       height: 165vh;

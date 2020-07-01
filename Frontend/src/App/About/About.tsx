@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import ContactUs from "./ContactUs";
+import Profile from "./Profile";
 
 import banner from "./banner.jpg";
 import demo0 from "#pics/demo0.png";
 import demo1 from "#pics/demo1.png";
 import demo2 from "#pics/demo2.png";
+import groupImg from "#pics/group.jpg";
 import drishti from "#pics/drishti.png";
 
 function About() {
@@ -44,7 +46,7 @@ function About() {
         </div>
       </nav>
       <div className="banner" ref={bannerRef}>
-        <img src={banner} alt="grass" />
+        <img src={banner} alt="banner" />
         <div className="center">
           <h1>Drishti</h1>
           <Link className="btn" to="/demo">
@@ -97,8 +99,50 @@ function About() {
           </div>
         </div>
         <div className="text-block">
-          <h2>About Us.</h2>
-          <p className="paragraph">TODO</p>
+          <h1>About Us.</h1>
+          <p className="paragraph">
+            We are a group of high school students from National Public School Indiranagar, Bangalore. We like to use our passion for
+            Computer Science to help improve the lives of the less fortunate.
+            <br />
+            <div className="pic-with-desc">
+              <img className="center" src={groupImg} alt="Group" />
+              <p>
+                Revhack, India&apos;s first Language hackathon hosted by Reverie Language Technologies and NASSCOM, was centered on building
+                a system for solving problems in Indian Language Space. Our project <span className="highlight">Drishti</span> helped us
+                place first and bagged ₹1 lakh.
+              </p>
+            </div>
+            <Profile
+              name="Abhinav Chinta"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727939022223179786/IMG_1812.jpg"
+              linkedinUrl="https://www.linkedin.com/in/abhinav-chinta-52a207194/"
+              githubUrl="https://github.com/abhinav-chinta"
+            />
+            <Profile
+              name="Anand Balivada"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727938408491778118/IMG_20200701_225710.JPG"
+              linkedinUrl="https://www.linkedin.com/in/anand-balivada-a46215194"
+              githubUrl="https://github.com/Poincare057"
+            />
+            <Profile
+              name="Anirudh Sathiya"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936014085128232/IMG_1809.jpg"
+              linkedinUrl="https://www.linkedin.com/in/holaamigos/"
+              githubUrl="https://github.com/Anirudh171202"
+            />
+            <Profile
+              name="Luv Singhal"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936012986351738/IMG_1807.jpg"
+              linkedinUrl="https://www.linkedin.com/in/luv-s-28035619b/"
+              githubUrl="https://github.com/Lutetium-Vanadium"
+            />
+            <Profile
+              name="Vrishab Krishna"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936015179841543/IMG_1808.jpg"
+              linkedinUrl="https://www.linkedin.com/in/vrishab/"
+              githubUrl="https://github.com/VrishabKrishna"
+            />
+          </p>
         </div>
         <ContactUs />
       </div>
