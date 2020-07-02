@@ -3,11 +3,12 @@ import React from "react";
 interface ProfileProps {
   imgUrl: string;
   name: string;
+  role: string;
   githubUrl: string;
   linkedinUrl: string;
 }
 
-function Profile({ imgUrl, name, linkedinUrl, githubUrl }: ProfileProps) {
+function Profile({ imgUrl, name, role, linkedinUrl, githubUrl }: ProfileProps) {
   return (
     <div className="profile">
       <div className="profile-pic">
@@ -15,6 +16,7 @@ function Profile({ imgUrl, name, linkedinUrl, githubUrl }: ProfileProps) {
       </div>
       <div className="profile-main">
         <h3>{name}</h3>
+        <p>{role}</p>
       </div>
       <div className="profile-links">
         <a href={linkedinUrl} target="_blank" rel="noreferrer" className="linkedin">

@@ -114,30 +114,35 @@ function About() {
             </div>
             <Profile
               name="Abhinav Chinta"
+              role="Founder"
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727939022223179786/IMG_1812.jpg"
               linkedinUrl="https://www.linkedin.com/in/abhinav-chinta-52a207194/"
               githubUrl="https://github.com/abhinav-chinta"
             />
             <Profile
               name="Anand Balivada"
+              role="Braille Engine Developer"
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727938408491778118/IMG_20200701_225710.JPG"
               linkedinUrl="https://www.linkedin.com/in/anand-balivada-a46215194"
               githubUrl="https://github.com/Poincare057"
             />
             <Profile
               name="Anirudh Sathiya"
+              role="Braille Engine Developer"
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936014085128232/IMG_1809.jpg"
               linkedinUrl="https://www.linkedin.com/in/holaamigos/"
               githubUrl="https://github.com/Anirudh171202"
             />
             <Profile
               name="Luv Singhal"
+              role="UI designer and Developer"
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936012986351738/IMG_1807.jpg"
               linkedinUrl="https://www.linkedin.com/in/luv-s-28035619b/"
               githubUrl="https://github.com/Lutetium-Vanadium"
             />
             <Profile
               name="Vrishab Krishna"
+              role="Braille Engine Developer"
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936015179841543/IMG_1808.jpg"
               linkedinUrl="https://www.linkedin.com/in/vrishab/"
               githubUrl="https://github.com/VrishabKrishna"

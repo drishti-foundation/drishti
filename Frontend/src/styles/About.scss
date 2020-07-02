@@ -197,6 +197,12 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
 
     &-main {
       flex: 6;
+      padding: 0 2rem;
+
+      p {
+        font-size: 1.1rem;
+        color: #555555;
+      }
     }
 
     &-links {
@@ -271,14 +277,25 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     flex-direction: column-reverse;
   }
 
-  .paragraph {
-    overflow: visible;
-  }
-
   .content {
+    &:last-child {
+      padding-bottom: 5vh;
+    }
+
+    .text-block {
+      padding: 2rem;
+    }
+
+    .paragraph {
+      overflow: visible;
+      font-size: 1.3rem;
+      margin: 1.7rem auto;
+    }
+
     .pic-with-desc {
       flex-direction: column;
       overflow: visible;
+      margin-bottom: 0;
 
       img {
         width: 100vw;
@@ -286,12 +303,14 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
 
       p {
         margin: 2rem 0;
+        font-size: 1.1rem;
       }
     }
 
     .profile {
       flex-direction: column;
       padding: 2.5rem 0;
+      margin: 2.5rem 0;
 
       &-main {
         margin: 2rem 0;
@@ -327,10 +346,12 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     }
 
     h2 {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
+      padding-left: 1.7rem;
     }
     h1 {
-      font-size: 4.5rem;
+      font-size: 3.2rem;
+      padding-left: 1.7rem;
     }
 
     .demo-wrapper {
@@ -342,15 +363,12 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     }
 
     .email {
-      text-overflow: ellipsis;
+      max-width: 70vw;
+      overflow-wrap: break-word;
     }
 
     div {
       flex-direction: column;
-
-      p {
-        margin: 2rem;
-      }
 
       img {
         width: 100%;
