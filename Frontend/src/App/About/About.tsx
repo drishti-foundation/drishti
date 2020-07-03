@@ -35,50 +35,50 @@ function About() {
 
   return (
     <div className="about">
-      <nav className={`nav-bar absolute-nav ${showNav ? "-show" : "-hide"}`}>
+      <nav className={`nav-bar absolute-nav ${showNav ? "-show" : "-hide"}`} aria-hidden={!showNav}>
         <div className="img-wrapper">
-          <img src={drishti} alt="logo" />
+          <img src={drishti} alt="drishti logo" />
         </div>
         <div className="btn-wrapper">
-          <Link className="btn" to="/demo">
+          <Link className="btn" to="/demo" aria-label="Translate Now">
             Translate Now
           </Link>
         </div>
       </nav>
-      <div className="banner" ref={bannerRef}>
-        <img src={banner} alt="banner" />
+      <header className="banner" ref={bannerRef}>
+        <img src={banner} alt="blind child in a field" />
         <div className="center">
           <h1>Drishti</h1>
-          <Link className="btn" to="/demo">
+          <Link className="btn" to="/demo" tabIndex={1} aria-label="Translate Now" title="Translate Now">
             Translate Now
           </Link>
         </div>
-      </div>
-      <div className="content">
-        <div className="stats">
-          <div className="info-card">
+      </header>
+      <main className="content">
+        <ul className="stats">
+          <li className="info-card">
             <div></div>
             {well}
             <h1>60%</h1>
             <p>of people live in rural India.</p>
             <div></div>
-          </div>
-          <div className="info-card">
+          </li>
+          <li className="info-card">
             <div></div>
             {blind}
             <h1>22%</h1>
             <p>of all blind people in the world reside in India.</p>
             <div></div>
-          </div>
-          <div className="info-card">
+          </li>
+          <li className="info-card">
             <div></div>
             {knowledge}
             <h1>10%</h1>
             <p>of Indians are literate in English.</p>
             <div></div>
-          </div>
-        </div>
-        <div className="text-block">
+          </li>
+        </ul>
+        <section className="text-block">
           <p className="paragraph">
             Most of India&apos;s visually impaired live in rural India. Almost all of them do not have access to quality education in their
             own language.
@@ -89,68 +89,78 @@ function About() {
             Braille convention to translate online books and PDFs to indigeous braille. In this way{" "}
             <span className="highlight">Drishti</span> empowers the visually impaired to read in their own language.
           </p>
-        </div>
-        <div className="text-block gradient">
+        </section>
+        <section className="text-block gradient demo-section">
           <h1>How to use.</h1>
           <div className="demo-wrapper">
-            <img src={demo0} alt="demo 0" className="demo-img" />
-            <img src={demo1} alt="demo 1" className="demo-img" />
-            <img src={demo2} alt="demo 2" className="demo-img" />
+            <img src={demo0} alt="basic page layout" className="demo-img" />
+            <img src={demo1} alt="uploading file by clicking on center of the screen, and send for processing" className="demo-img" />
+            <img src={demo2} alt="download translated pdf" className="demo-img" />
+            <Link className="btn" to="/demo" tabIndex={2} aria-label="Translate Now">
+              Translate Now
+            </Link>
           </div>
-        </div>
-        <div className="text-block">
+        </section>
+        <section className="text-block">
           <h1>About Us.</h1>
           <p className="paragraph">
             We are a group of high school students from National Public School Indiranagar, Bangalore. We like to use our passion for
             Computer Science to help improve the lives of the less fortunate.
             <br />
             <div className="pic-with-desc">
-              <img className="center" src={groupImg} alt="Group" />
+              <img className="center" src={groupImg} title="Team behind Drishti at Revhack" alt="team behind Drishti at Revhack" />
               <p>
                 Revhack, India&apos;s first Language hackathon hosted by Reverie Language Technologies and NASSCOM, was centered on building
                 a system for solving problems in Indian Language Space. Our project <span className="highlight">Drishti</span> helped us
                 place first and bagged ₹1 lakh.
               </p>
             </div>
-            <Profile
-              name="Abhinav Chinta"
-              role="Founder"
-              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727939022223179786/IMG_1812.jpg"
-              linkedinUrl="https://www.linkedin.com/in/abhinav-chinta-52a207194/"
-              githubUrl="https://github.com/abhinav-chinta"
-            />
-            <Profile
-              name="Anand Balivada"
-              role="Braille Engine Developer"
-              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727938408491778118/IMG_20200701_225710.JPG"
-              linkedinUrl="https://www.linkedin.com/in/anand-balivada-a46215194"
-              githubUrl="https://github.com/Poincare057"
-            />
-            <Profile
-              name="Anirudh Sathiya"
-              role="Braille Engine Developer"
-              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936014085128232/IMG_1809.jpg"
-              linkedinUrl="https://www.linkedin.com/in/holaamigos/"
-              githubUrl="https://github.com/Anirudh171202"
-            />
-            <Profile
-              name="Luv Singhal"
-              role="UI designer and Developer"
-              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936012986351738/IMG_1807.jpg"
-              linkedinUrl="https://www.linkedin.com/in/luv-s-28035619b/"
-              githubUrl="https://github.com/Lutetium-Vanadium"
-            />
-            <Profile
-              name="Vrishab Krishna"
-              role="Braille Engine Developer"
-              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936015179841543/IMG_1808.jpg"
-              linkedinUrl="https://www.linkedin.com/in/vrishab/"
-              githubUrl="https://github.com/VrishabKrishna"
-            />
+            <ul>
+              <Profile
+                name="Abhinav Chinta"
+                role="Founder"
+                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727939022223179786/IMG_1812.jpg"
+                linkedinUrl="https://www.linkedin.com/in/abhinav-chinta-52a207194/"
+                githubUrl="https://github.com/abhinav-chinta"
+                tabIndex={3}
+              />
+              <Profile
+                name="Anand Balivada"
+                role="Braille Engine Developer"
+                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727938408491778118/IMG_20200701_225710.JPG"
+                linkedinUrl="https://www.linkedin.com/in/anand-balivada-a46215194"
+                githubUrl="https://github.com/Poincare057"
+                tabIndex={5}
+              />
+              <Profile
+                name="Anirudh Sathiya"
+                role="Braille Engine Developer"
+                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936014085128232/IMG_1809.jpg"
+                linkedinUrl="https://www.linkedin.com/in/holaamigos/"
+                githubUrl="https://github.com/Anirudh171202"
+                tabIndex={7}
+              />
+              <Profile
+                name="Luv Singhal"
+                role="UI designer and Developer"
+                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936012986351738/IMG_1807.jpg"
+                linkedinUrl="https://www.linkedin.com/in/luv-s-28035619b/"
+                githubUrl="https://github.com/Lutetium-Vanadium"
+                tabIndex={9}
+              />
+              <Profile
+                name="Vrishab Krishna"
+                role="Braille Engine Developer"
+                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936015179841543/IMG_1808.jpg"
+                linkedinUrl="https://www.linkedin.com/in/vrishab/"
+                githubUrl="https://github.com/VrishabKrishna"
+                tabIndex={11}
+              />
+            </ul>
           </p>
-        </div>
+        </section>
         <ContactUs />
-      </div>
+      </main>
     </div>
   );
 }

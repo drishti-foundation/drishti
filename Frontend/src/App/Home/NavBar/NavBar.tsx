@@ -17,7 +17,7 @@ function NavBar({ lang, setEng, setHin }: NavBarProps) {
     <div className="nav-bar">
       <Link className="logo" to="/">
         {back}
-        <img src={drishti} alt="Logo" />
+        <img src={drishti} alt="drishti logo" />
       </Link>
       <div className="btn-wrapper">
         <Checkbox name="English Braille" checked={lang === Language.Eng} onClick={setEng} />

@@ -2,6 +2,12 @@
   overflow: hidden;
 }
 
+* {
+  &:focus {
+    border: 4px solid black !important;
+  }
+}
+
 .img-wrapper {
   @include flex-box;
 
@@ -39,6 +45,10 @@
 
       &:hover {
         background-color: lighten($lightbg, 10%);
+      }
+
+      &:focus {
+        border-color: white !important;
       }
     }
   }
@@ -112,7 +122,8 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
   .demo-wrapper {
     @include flex-box($dir: column);
 
-    margin: 2rem auto;
+    margin: 0 auto;
+    padding: 2rem 0;
     max-width: $max-width;
   }
 
@@ -144,6 +155,18 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
   .gradient {
     background: $gradient;
     color: white;
+
+    .btn {
+      @include trans(box-shadow);
+
+      background: transparent;
+      border: 1px solid white;
+
+      &:hover {
+        background: transparent;
+        box-shadow: 0.5rem 0.35rem 10px 4px #0000002d;
+      }
+    }
   }
 
   .email {
@@ -153,6 +176,10 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
   .demo-img {
     max-height: 75vh;
     max-width: 70vw;
+  }
+
+  ul {
+    overflow: visible;
   }
 
   .pic-with-desc {
@@ -354,8 +381,15 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
       padding-left: 1.7rem;
     }
 
+    .demo-section {
+      padding: 1rem;
+
+      h1 {
+        padding-left: 2.7rem;
+      }
+    }
     .demo-wrapper {
-      max-width: 95vw;
+      max-width: 100vw;
 
       .demo-img {
         max-width: 100%;
