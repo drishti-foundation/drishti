@@ -2,6 +2,10 @@
   overflow: hidden;
 }
 
+$animdur: 0.5s;
+$animdelay: 0.3s;
+$animtrans: 3rem;
+
 * {
   &:focus {
     border: 4px solid black !important;
@@ -36,12 +40,17 @@
       color: white;
       font-weight: 700;
       text-shadow: 2px 5px #00000010, -2px -5px #00000010;
+      opacity: 0;
+
+      animation: fade-down $animdur cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
     }
 
     .btn {
       color: white;
       background-color: $lightbg;
       font-size: 1.5rem;
+      opacity: 0;
+      animation: fade-down $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay forwards;
 
       &:hover {
         background-color: lighten($lightbg, 10%);
@@ -68,8 +77,22 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     @include flex-box($just: space-around);
 
     padding: 3rem 0;
+    padding-top: 6rem;
     width: 100vw;
     overflow: visible;
+
+    &.-hide {
+      .info-card {
+        opacity: 0;
+        transform: translateY(-$animtrans);
+      }
+    }
+    &.-show {
+      .info-card {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     .info-card {
       @include flex-box($just: flex-start, $dir: column);
@@ -81,6 +104,12 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
       border-radius: 1rem;
       box-shadow: 0.5rem 1rem 1.3rem 0.4rem #00000052;
       height: 45vh;
+
+      @for $i from 0 to 3 {
+        &:nth-child(#{$i + 1}) {
+          transition: opacity $animdur linear $animdelay * $i, transform $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay * $i;
+        }
+      }
 
       * {
         flex: 1;
@@ -104,6 +133,7 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
       }
 
       p {
+        flex: 1;
         color: #f1f1f1;
         font-size: 1.2rem;
         text-align: center;
@@ -137,6 +167,8 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
   }
 
   h1 {
+    transition: opacity 0.3s linear, transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+
     font-size: 5.5rem;
     padding-left: (100vw - $max-width)/2;
   }
@@ -150,6 +182,27 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     padding: 3.4rem 0;
     width: 100vw;
     color: #333333;
+
+    &.-show {
+      * {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+    &.-hide {
+      * {
+        opacity: 0;
+        transform: translateY(-$animtrans);
+      }
+    }
+
+    * {
+      @for $i from 0 to 100 {
+        &:nth-child(#{$i + 1}) {
+          transition: opacity $animdur linear $animdelay * $i, transform $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay * $i;
+        }
+      }
+    }
   }
 
   .gradient {
@@ -174,8 +227,19 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
   }
 
   .demo-img {
+    @include trans;
+
     max-height: 75vh;
     max-width: 70vw;
+
+    &.-hide {
+      opacity: 0;
+      transform: translateY(-$animtrans);
+    }
+    &.-show {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   ul {
@@ -185,7 +249,7 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
   .pic-with-desc {
     @include flex-box;
 
-    margin: 3rem 0;
+    margin: 3rem auto;
 
     * {
       flex: 1;
@@ -202,8 +266,34 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     }
   }
 
+  .profile-wrapper {
+    font-size: 1.6rem;
+    margin: 3rem auto;
+    max-width: $max-width;
+    overflow: visible;
+
+    &.-hide {
+      .profile {
+        opacity: 0;
+        transform: translateY(-$animtrans);
+      }
+    }
+    &.-show {
+      .profile {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
   .profile {
     @include flex-box;
+
+    @for $i from 0 to 5 {
+      &:nth-child(#{$i + 1}) {
+        transition: opacity $animdur linear $animdelay * $i, transform $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay * $i;
+      }
+    }
 
     padding: 1.2rem 2.5rem;
     box-shadow: 0.4rem 0.6rem 0.8rem 0.4rem #0000001a;
@@ -408,5 +498,16 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
         width: 100%;
       }
     }
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-35%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
   }
 }

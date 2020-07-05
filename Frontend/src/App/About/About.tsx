@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-import ContactUs from "./ContactUs";
 import Profile from "./Profile";
+import AnimateIntoView from "./AnimateIntoView";
 
 import banner from "./banner.jpg";
 import demo0 from "#pics/demo0.png";
@@ -13,7 +13,7 @@ import drishti from "#pics/drishti.png";
 
 function About() {
   const [showNav, setShowNav] = useState(false);
-  const bannerRef = useRef<HTMLDivElement>(null);
+  const bannerRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     if (bannerRef.current !== null) {
@@ -55,7 +55,7 @@ function About() {
         </div>
       </header>
       <main className="content">
-        <ul className="stats">
+        <AnimateIntoView type="ul" className="stats">
           <li className="info-card">
             <div></div>
             {well}
@@ -77,8 +77,8 @@ function About() {
             <p>of Indians are literate in English.</p>
             <div></div>
           </li>
-        </ul>
-        <section className="text-block">
+        </AnimateIntoView>
+        <AnimateIntoView type="section" className="text-block">
           <p className="paragraph">
             Most of India&apos;s visually impaired live in rural India. Almost all of them do not have access to quality education in their
             own language.
@@ -89,77 +89,93 @@ function About() {
             Braille convention to translate online books and PDFs to indigeous braille. In this way{" "}
             <span className="highlight">Drishti</span> empowers the visually impaired to read in their own language.
           </p>
-        </section>
-        <section className="text-block gradient demo-section">
+        </AnimateIntoView>
+        <AnimateIntoView type="section" className="text-block gradient demo-section">
           <h1>How to use.</h1>
           <div className="demo-wrapper">
-            <img src={demo0} alt="basic page layout" className="demo-img" />
-            <img src={demo1} alt="uploading file by clicking on center of the screen, and send for processing" className="demo-img" />
-            <img src={demo2} alt="download translated pdf" className="demo-img" />
+            <AnimateIntoView type="img" src={demo0} alt="basic page layout" className="demo-img" />
+            <AnimateIntoView
+              type="img"
+              src={demo1}
+              alt="uploading file by clicking on center of the screen, and send for processing"
+              className="demo-img"
+            />
+            <AnimateIntoView type="img" src={demo2} alt="download translated pdf" className="demo-img" />
             <Link className="btn" to="/demo" tabIndex={2} aria-label="Translate Now">
               Translate Now
             </Link>
           </div>
-        </section>
-        <section className="text-block">
+        </AnimateIntoView>
+        <AnimateIntoView type="section" className="text-block">
           <h1>About Us.</h1>
           <p className="paragraph">
             We are a group of high school students from National Public School Indiranagar, Bangalore. We like to use our passion for
             Computer Science to help improve the lives of the less fortunate.
-            <br />
-            <div className="pic-with-desc">
-              <img className="center" src={groupImg} title="Team behind Drishti at Revhack" alt="team behind Drishti at Revhack" />
-              <p>
-                Revhack, India&apos;s first Language hackathon hosted by Reverie Language Technologies and NASSCOM, was centered on building
-                a system for solving problems in Indian Language Space. Our project <span className="highlight">Drishti</span> helped us
-                place first and bagged ₹1 lakh.
-              </p>
-            </div>
-            <ul>
-              <Profile
-                name="Abhinav Chinta"
-                role="Founder"
-                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727939022223179786/IMG_1812.jpg"
-                linkedinUrl="https://www.linkedin.com/in/abhinav-chinta-52a207194/"
-                githubUrl="https://github.com/abhinav-chinta"
-                tabIndex={3}
-              />
-              <Profile
-                name="Anand Balivada"
-                role="Braille Engine Developer"
-                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727938408491778118/IMG_20200701_225710.JPG"
-                linkedinUrl="https://www.linkedin.com/in/anand-balivada-a46215194"
-                githubUrl="https://github.com/Poincare057"
-                tabIndex={5}
-              />
-              <Profile
-                name="Anirudh Sathiya"
-                role="Braille Engine Developer"
-                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936014085128232/IMG_1809.jpg"
-                linkedinUrl="https://www.linkedin.com/in/holaamigos/"
-                githubUrl="https://github.com/Anirudh171202"
-                tabIndex={7}
-              />
-              <Profile
-                name="Luv Singhal"
-                role="UI designer and Developer"
-                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936012986351738/IMG_1807.jpg"
-                linkedinUrl="https://www.linkedin.com/in/luv-s-28035619b/"
-                githubUrl="https://github.com/Lutetium-Vanadium"
-                tabIndex={9}
-              />
-              <Profile
-                name="Vrishab Krishna"
-                role="Braille Engine Developer"
-                imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936015179841543/IMG_1808.jpg"
-                linkedinUrl="https://www.linkedin.com/in/vrishab/"
-                githubUrl="https://github.com/VrishabKrishna"
-                tabIndex={11}
-              />
-            </ul>
           </p>
-        </section>
-        <ContactUs />
+          <br />
+          <div className="pic-with-desc paragraph">
+            <img className="center" src={groupImg} title="Team behind Drishti at Revhack" alt="team behind Drishti at Revhack" />
+            <p>
+              Revhack, India&apos;s first Language hackathon hosted by Reverie Language Technologies and NASSCOM, was centered on building a
+              system for solving problems in Indian Language Space. Our project <span className="highlight">Drishti</span> helped us place
+              first and bagged ₹1 lakh.
+            </p>
+          </div>
+          <AnimateIntoView type="ul" className="profile-wrapper">
+            <Profile
+              name="Abhinav Chinta"
+              role="Founder"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727939022223179786/IMG_1812.jpg"
+              linkedinUrl="https://www.linkedin.com/in/abhinav-chinta-52a207194/"
+              githubUrl="https://github.com/abhinav-chinta"
+              tabIndex={3}
+            />
+            <Profile
+              name="Anand Balivada"
+              role="Braille Engine Developer"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727938408491778118/IMG_20200701_225710.JPG"
+              linkedinUrl="https://www.linkedin.com/in/anand-balivada-a46215194"
+              githubUrl="https://github.com/Poincare057"
+              tabIndex={5}
+            />
+            <Profile
+              name="Anirudh Sathiya"
+              role="Braille Engine Developer"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936014085128232/IMG_1809.jpg"
+              linkedinUrl="https://www.linkedin.com/in/holaamigos/"
+              githubUrl="https://github.com/Anirudh171202"
+              tabIndex={7}
+            />
+            <Profile
+              name="Luv Singhal"
+              role="UI designer and Developer"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936012986351738/IMG_1807.jpg"
+              linkedinUrl="https://www.linkedin.com/in/luv-s-28035619b/"
+              githubUrl="https://github.com/Lutetium-Vanadium"
+              tabIndex={9}
+            />
+            <Profile
+              name="Vrishab Krishna"
+              role="Braille Engine Developer"
+              imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936015179841543/IMG_1808.jpg"
+              linkedinUrl="https://www.linkedin.com/in/vrishab/"
+              githubUrl="https://github.com/VrishabKrishna"
+              tabIndex={11}
+            />
+          </AnimateIntoView>
+          {/* </div> */}
+        </AnimateIntoView>
+        <AnimateIntoView type="section" className="text-block gradient">
+          <h1>Contact Us.</h1>
+          <p className="paragraph">
+            Want to get into touch with us? Email <span className="email">mail.drishtifoundation@gmail.com</span> or click the link below!
+          </p>
+          <button className="contact-btn" aria-label="Email us">
+            <a href="mailto:mail.drishtifoundation@gmail.com" title="Contact Us" tabIndex={12}>
+              Contact Us
+            </a>
+          </button>
+        </AnimateIntoView>
       </main>
     </div>
   );
