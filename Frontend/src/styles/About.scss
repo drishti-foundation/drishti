@@ -300,6 +300,10 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     border-radius: 1rem;
     margin: 4rem 0;
 
+    h6 {
+      font-size: 1.6rem;
+    }
+
     &-pic {
       @include flex-box;
       flex: 1;
@@ -443,6 +447,7 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
       flex-direction: column;
       height: 165vh;
       padding-bottom: 0;
+      padding-top: 3rem;
 
       .info-card {
         width: 80vw;

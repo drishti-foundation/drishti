@@ -6,24 +6,23 @@ interface ProfileProps {
   role: string;
   githubUrl: string;
   linkedinUrl: string;
-  tabIndex: number;
 }
 
-function Profile({ imgUrl, name, role, linkedinUrl, githubUrl, tabIndex }: ProfileProps) {
+function Profile({ imgUrl, name, role, linkedinUrl, githubUrl }: ProfileProps) {
   return (
     <li className="profile">
       <div className="profile-pic">
         <img src={imgUrl} alt={`${name}, ${role} of Drishti`} title={name} />
       </div>
       <div className="profile-main">
-        <h4>{name}</h4>
+        <h6>{name}</h6>
         <p>{role}</p>
       </div>
       <div className="profile-links">
-        <a href={linkedinUrl} target="_blank" rel="noreferrer" className="linkedin" title={`${name}'s Linked-In`} tabIndex={tabIndex}>
+        <a href={linkedinUrl} target="_blank" rel="noreferrer" className="linkedin" title={`${name}'s Linked-In`}>
           Linkedin
         </a>
-        <a href={githubUrl} target="_blank" rel="noreferrer" className="github" title={`${name}'s GitHub`} tabIndex={tabIndex + 1}>
+        <a href={githubUrl} target="_blank" rel="noreferrer" className="github" title={`${name}'s GitHub`}>
           GitHub
         </a>
       </div>

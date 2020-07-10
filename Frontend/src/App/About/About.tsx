@@ -40,7 +40,7 @@ function About() {
           <img src={drishti} alt="drishti logo" />
         </div>
         <div className="btn-wrapper">
-          <Link className="btn" to="/demo" aria-label="Translate Now">
+          <Link className="btn" to="/demo" aria-label="Translate Now" tabIndex={showNav ? 0 : -1}>
             Translate Now
           </Link>
         </div>
@@ -49,7 +49,7 @@ function About() {
         <img src={banner} alt="blind child in a field" />
         <div className="center">
           <h1>Drishti</h1>
-          <Link className="btn" to="/demo" tabIndex={1} aria-label="Translate Now" title="Translate Now">
+          <Link className="btn" to="/demo" aria-label="Translate Now" title="Translate Now">
             Translate Now
           </Link>
         </div>
@@ -101,7 +101,7 @@ function About() {
               className="demo-img"
             />
             <AnimateIntoView type="img" src={demo2} alt="download translated pdf" className="demo-img" />
-            <Link className="btn" to="/demo" tabIndex={2} aria-label="Translate Now">
+            <Link className="btn" to="/demo" aria-label="Translate Now">
               Translate Now
             </Link>
           </div>
@@ -128,7 +128,6 @@ function About() {
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727939022223179786/IMG_1812.jpg"
               linkedinUrl="https://www.linkedin.com/in/abhinav-chinta-52a207194/"
               githubUrl="https://github.com/abhinav-chinta"
-              tabIndex={3}
             />
             <Profile
               name="Anand Balivada"
@@ -136,7 +135,6 @@ function About() {
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727938408491778118/IMG_20200701_225710.JPG"
               linkedinUrl="https://www.linkedin.com/in/anand-balivada-a46215194"
               githubUrl="https://github.com/Poincare057"
-              tabIndex={5}
             />
             <Profile
               name="Anirudh Sathiya"
@@ -144,7 +142,6 @@ function About() {
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936014085128232/IMG_1809.jpg"
               linkedinUrl="https://www.linkedin.com/in/holaamigos/"
               githubUrl="https://github.com/Anirudh171202"
-              tabIndex={7}
             />
             <Profile
               name="Luv Singhal"
@@ -152,7 +149,6 @@ function About() {
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936012986351738/IMG_1807.jpg"
               linkedinUrl="https://www.linkedin.com/in/luv-s-28035619b/"
               githubUrl="https://github.com/Lutetium-Vanadium"
-              tabIndex={9}
             />
             <Profile
               name="Vrishab Krishna"
@@ -160,7 +156,6 @@ function About() {
               imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936015179841543/IMG_1808.jpg"
               linkedinUrl="https://www.linkedin.com/in/vrishab/"
               githubUrl="https://github.com/VrishabKrishna"
-              tabIndex={11}
             />
           </AnimateIntoView>
           {/* </div> */}
@@ -171,7 +166,7 @@ function About() {
             Want to get into touch with us? Email <span className="email">mail.drishtifoundation@gmail.com</span> or click the link below!
           </p>
           <button className="contact-btn" aria-label="Email us">
-            <a href="mailto:mail.drishtifoundation@gmail.com" title="Contact Us" tabIndex={12}>
+            <a href="mailto:mail.drishtifoundation@gmail.com" title="Contact Us">
               Contact Us
             </a>
           </button>
