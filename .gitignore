@@ -1,6 +1,9 @@
 .vscode
 out.pdf
 
+static/
+build/
+
 # Logs
 logs
 *.log

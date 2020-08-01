@@ -1,39 +1,37 @@
-import express from "express";
-import path from "path";
-import fileUpload, { UploadedFile } from "express-fileupload";
+import express from 'express';
+import path from 'path';
+import fileUpload, { UploadedFile } from 'express-fileupload';
 
-import { readPdf, writePdf } from "./pdfHandler";
-import textToBraille from "./braille";
+import { readPdf, writePdf } from './pdfHandler';
+import textToBraille from './braille';
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
-const staticFolder = path.resolve("static");
+const staticFolder = path.resolve('static');
 
 // Middleware for easy file uploading
 app.use(fileUpload());
 
-app.use(express.static("static"));
+app.use(express.static('static'));
 
-app.get(["/", "/demo", "/about"], (req, res) =>
-  res.sendFile("index.html", { root: staticFolder })
-);
+app.get(['/', '/demo', '/about'], (req, res) => res.sendFile('index.html', { root: staticFolder }));
 
-app.post("/braille/:lang", async (req, res) => {
+app.post('/braille/:lang', async (req, res) => {
   try {
     const file = req.files?.file as UploadedFile;
     const { lang } = req.params;
 
     if (file === undefined) {
-      return res.status(500).send("No uploaded file detected.");
+      return res.status(500).send('No uploaded file detected.');
     }
 
     const pdfText = await readPdf(file.data);
 
     const brailleText = await textToBraille(pdfText, lang);
 
-    if (brailleText === "Failed") {
-      res.status(500).send("Conversion to Braille Failed.");
+    if (brailleText === 'Failed') {
+      res.status(500).send('Conversion to Braille Failed.');
     }
 
     await writePdf(brailleText, file.name);
@@ -43,12 +41,12 @@ app.post("/braille/:lang", async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).send("Internal server error");
+    res.status(500).send('Internal server error');
   }
 });
 
-app.get("/downloads/:pdfName", (req, res) => {
-  res.download(path.resolve("downloads", req.params.pdfName));
+app.get('/downloads/:pdfName', (req, res) => {
+  res.download(path.resolve('downloads', req.params.pdfName));
 });
 
 app.listen(PORT, () => console.info(`Listening on port ${PORT}`));
