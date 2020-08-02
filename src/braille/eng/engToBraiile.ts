@@ -1,17 +1,17 @@
-import { contractions, letters, punctuation, numbers, braille } from "./mapEngToBraille";
+import { contractions, letters, punctuation, numbers, braille } from './mapEngToBraille';
 
 const CAPITAL = String.fromCharCode(10272);
 const NUMBER = String.fromCharCode(10300);
-const UNRECOGNIZED = "?";
+const UNRECOGNIZED = '?';
 
 let openQuotes = true;
 
 const extractWords = (str: string) => {
   // Split up a sentence based on whitespace (" ") and new line ("\n") chars.
-  const words = str.split(" ");
+  const words = str.split(' ');
   const result: string[] = [];
   for (const word of words) {
-    result.push(...word.split("\n"));
+    result.push(...word.split('\n'));
   }
   return result;
 };
@@ -39,7 +39,7 @@ const trim = (word: string) => {
 
 const numbersHandler = (word: string) => {
   // Replace each group of numbers in a word to their respective braille representation.
-  if (word === "") return word;
+  if (word === '') return word;
   let result = word[0];
   if (/[0-9]/.test(word[0])) result = NUMBER + numbers.get(word[0]);
   for (let i = 1; i < word.length; i++) {
@@ -52,8 +52,8 @@ const numbersHandler = (word: string) => {
 
 const capitalLettersHandler = (word: string) => {
   // Put the capital escape code before each capital letter.
-  if (word === "") return word;
-  let result = "";
+  if (word === '') return word;
+  let result = '';
   for (const char of word) {
     if (/[A-Z]/.test(char)) result += CAPITAL + char.toLowerCase();
     else result += char.toLowerCase();
@@ -64,15 +64,15 @@ const capitalLettersHandler = (word: string) => {
 const charToBraille = (char: string) => {
   // Convert an alphabetic char to braille.
   if (isBraille(char)) return char;
-  else if (char === "\n") return "\n";
+  else if (char === '\n') return '\n';
   else if (char === '"') {
     openQuotes = !openQuotes;
-    if (openQuotes) return punctuation.get("“");
-    else return punctuation.get("”");
+    if (openQuotes) return punctuation.get('“');
+    else return punctuation.get('”');
   } else if (letters.has(char) && /[A-Z]/.test(char)) return CAPITAL + letters.get(char);
   else if (letters.has(char)) return letters.get(char);
   else if (punctuation.has(char)) return punctuation.get(char);
-  else console.error("Unrecognized Symbol:", char, "with UTF code:", char.charCodeAt(0));
+  else console.error('Unrecognized Symbol:', char, 'with UTF code:', char.charCodeAt(0));
   return UNRECOGNIZED;
 };
 
@@ -80,7 +80,7 @@ const wordToBraille = (word: string) => {
   // Convert an alphabetic word to braille.
   if (contractions.has(word)) return contractions.get(word);
   else {
-    let result = "";
+    let result = '';
     for (const char of word) result += charToBraille(char);
     return result;
   }
@@ -88,10 +88,10 @@ const wordToBraille = (word: string) => {
 
 const buildBrailleWord = (trimmedWord: string, shavings: string, index: number, braille: string) => {
   // Translate a trimmed word to braille then re-attach the shavings.
-  if (shavings === "") braille += wordToBraille(trimmedWord);
+  if (shavings === '') braille += wordToBraille(trimmedWord);
   else {
     for (let i = 0; i < shavings.length; i++) {
-      if (i === index && trimmedWord !== "") braille += wordToBraille(trimmedWord);
+      if (i === index && trimmedWord !== '') braille += wordToBraille(trimmedWord);
       braille += wordToBraille(shavings[i]);
     }
     if (index === shavings.length)
@@ -103,7 +103,7 @@ const buildBrailleWord = (trimmedWord: string, shavings: string, index: number, 
 
 const engToBraille = (str: string) => {
   // Convert alphabetic text to braille.
-  let braille = "";
+  let braille = '';
   const words = extractWords(str);
   for (let word of words) {
     word = numbersHandler(word);
@@ -111,8 +111,8 @@ const engToBraille = (str: string) => {
     const trimmedWord = trim(word); // Remove punctuation (ex: change dog?" to dog)
     const untrimmedWord = word;
     const index = untrimmedWord.indexOf(trimmedWord);
-    const shavings = untrimmedWord.replace(trimmedWord, "");
-    braille = buildBrailleWord(trimmedWord, shavings, index, braille) + " ";
+    const shavings = untrimmedWord.replace(trimmedWord, '');
+    braille = buildBrailleWord(trimmedWord, shavings, index, braille) + ' ';
   }
   return braille.slice(0, -1); // Remove the final space that was added.
 };

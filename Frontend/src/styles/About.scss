@@ -65,9 +65,6 @@ $animtrans: 3rem;
 
 $gradient: linear-gradient(to bottom right, $tl, $br);
 
-// $tl: #742a7e;
-// $br: #2a136b;
-
 .content {
   $max-width: 70vw;
 
@@ -351,10 +348,12 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
 
 @media screen and (max-width: 750px) {
   .absolute-nav {
-    height: 100%;
+    height: auto;
     background: transparent;
     pointer-events: none;
     box-shadow: none;
+    top: 0;
+    bottom: 0;
 
     .img-wrapper {
       @include trans(transform);
