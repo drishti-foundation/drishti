@@ -1,6 +1,9 @@
 import express from 'express';
 import path from 'path';
 import fileUpload, { UploadedFile } from 'express-fileupload';
+import { config } from 'dotenv';
+
+config();
 
 import { readPdf, writePdf } from './pdfHandler';
 import textToBraille from './braille';

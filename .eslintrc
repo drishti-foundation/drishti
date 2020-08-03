@@ -15,7 +15,8 @@
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "react-hooks/exhaustive-deps": "off",
-    "@typescript-eslint/ban-ts-ignore": "off"
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/camelcase": "off"
   },
   "extends": [
     "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
