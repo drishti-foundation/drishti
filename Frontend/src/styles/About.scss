@@ -99,7 +99,7 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
       padding: 0.5rem 2rem;
       color: white;
       border-radius: 1rem;
-      box-shadow: 0.5rem 1rem 1.3rem 0.4rem #00000052;
+      box-shadow: 0.5rem 1rem 1rem #00000052;
       height: 45vh;
 
       @for $i from 0 to 3 {
@@ -253,7 +253,9 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     }
 
     img {
-      object-fit: scale-down;
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
     }
 
     p {
@@ -293,9 +295,10 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     }
 
     padding: 1.2rem 2.5rem;
-    box-shadow: 0.4rem 0.6rem 0.8rem 0.4rem #0000001a;
+    box-shadow: 0.4rem 0.6rem 0.8rem #0000001a;
     border-radius: 1rem;
     margin: 4rem 0;
+    background: #fafafa;
 
     h6 {
       font-size: 1.6rem;
