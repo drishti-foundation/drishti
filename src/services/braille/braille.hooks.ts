@@ -1,7 +1,7 @@
 import { HookContext } from '@feathersjs/feathers';
 import * as authentication from '@feathersjs/authentication';
 import { iff, disallow } from 'feathers-hooks-common';
-import { NotAuthenticated, BadRequest } from '@feathersjs/errors';
+import { Forbidden, BadRequest } from '@feathersjs/errors';
 import allowAnonymous from '../../hooks/allowAnonymous';
 
 const { authenticate } = authentication.hooks;
@@ -13,7 +13,9 @@ export default {
     all: [
       allowAnonymous(),
       authenticate('jwt', 'anonymous'),
-      ({ params }: HookContext) => {
+      (context: HookContext) => {
+        const { params } = context;
+
         if (!params?.query?.lang) {
           // Must have language param
           throw new BadRequest('Language not found: A language must be given as a query');
@@ -24,13 +26,18 @@ export default {
             supportedLanguages: Array.from(SUPPORTED_LANGS),
           });
         }
+
+        return context;
       },
       iff(
         context => context.params.anonymous === true,
-        ({ params: { query } }) => {
+        context => {
+          const { query } = context.params;
+
           if (query?.lang === 'hi') {
-            throw new NotAuthenticated();
+            throw new Forbidden('hi only supported for account holders');
           }
+          return context;
         }
       ),
     ],

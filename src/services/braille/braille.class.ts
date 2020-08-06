@@ -1,4 +1,4 @@
-import { Id, NullableId, Paginated, Params, ServiceMethods } from '@feathersjs/feathers';
+import { Id, NullableId, Paginated, Params, ServiceMethods, Query } from '@feathersjs/feathers';
 import { NotImplemented } from '@feathersjs/errors';
 
 import { Application } from '../../declarations';
@@ -17,13 +17,13 @@ interface DownloadLocation {
   route: string;
 }
 
-declare module '@feathersjs/feathers' {
-  interface Params {
-    file: Express.Multer.File;
-  }
-  interface Query {
-    lang: 'en' | 'hi';
-  }
+interface BrailleQuery extends Query {
+  lang: 'en' | 'hi';
+}
+
+interface BrailleParams extends Params {
+  file: Express.Multer.File;
+  query?: BrailleQuery;
 }
 
 export class Braille implements ServiceMethods<Data> {
@@ -37,7 +37,7 @@ export class Braille implements ServiceMethods<Data> {
 
   async create(
     data: Data | Data[],
-    params: Params
+    params: BrailleParams
   ): Promise<DownloadLocation | DownloadLocation[]> {
     if (Array.isArray(data)) {
       return Promise.all(
@@ -50,14 +50,11 @@ export class Braille implements ServiceMethods<Data> {
 
     let pdfText = await pdf.read(file.buffer);
 
-    // const brailleText = await textToBraille(pdfText, lang);
     let brailleText = '';
 
     if (brailleText === 'Failed') {
       throw new Error('Conversion to Braille Failed.');
     }
-
-    await pdf.write(brailleText, file.filename);
 
     if (lang === 'hi') {
       const toConvert: string[] = [];
@@ -70,8 +67,10 @@ export class Braille implements ServiceMethods<Data> {
       brailleText = engToBraille(pdfText);
     }
 
+    await pdf.write(brailleText, file.originalname);
+
     return {
-      route: `downloads/${file.filename}`,
+      route: `downloads/${file.originalname}`,
     };
   }
 

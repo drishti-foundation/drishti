@@ -15,7 +15,7 @@ declare module '../../declarations' {
   }
 }
 
-export default function (app: Application): void {
+export default () => (app: Application) => {
   const options = {
     paginate: app.get('paginate'),
   };
@@ -41,4 +41,4 @@ export default function (app: Application): void {
   const service = app.service('braille');
 
   service.hooks(hooks);
-}
+};

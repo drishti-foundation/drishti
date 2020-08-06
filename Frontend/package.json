@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "watch": "parcel ./src/index.html",
-    "prebuild": "yarn lint && rm -rf ../static",
-    "build": "parcel build --out-dir=../static ./src/index.html",
+    "prebuild": "yarn lint && rm -rf ../public",
+    "build": "parcel build --out-dir=../public ./src/index.html",
     "lint": "cd .. && yarn lint:frontend"
   },
   "dependencies": {
