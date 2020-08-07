@@ -2,7 +2,7 @@ import { HookContext } from '@feathersjs/feathers';
 import * as feathersAuthentication from '@feathersjs/authentication';
 import * as local from '@feathersjs/authentication-local';
 import { BadRequest } from '@feathersjs/errors';
-import { validate } from 'feathers-hooks-common';
+import { validate, iff } from 'feathers-hooks-common';
 
 import onlyAdmin from '../../hooks/onlyAdmin';
 
@@ -13,7 +13,7 @@ export default {
   before: {
     all: [],
     find: [authenticate('jwt'), onlyAdmin()],
-    get: [authenticate('jwt'), onlyAdmin()],
+    get: [authenticate('jwt')],
     create: [
       validate(values => {
         if (!values.password || !values.username) {

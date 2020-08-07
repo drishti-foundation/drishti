@@ -1,4 +1,5 @@
 import axios from 'axios';
+import logger from '../../../logger';
 
 const URL = 'https://api-gw.revup.reverieinc.com/apiman-gateway/ReverieHackathon/localization/1.0';
 
@@ -12,6 +13,8 @@ interface ReverieResponse {
 }
 
 const translate = async (text: string) => {
+  logger.info(`Translating text: ${text}`);
+
   const response = await axios.post<ReverieResponse>(
     URL,
     {
@@ -34,10 +37,9 @@ const translate = async (text: string) => {
     }
   );
 
-  if (response.status !== 200) throw response.headers.status;
+  if (response.status !== 200) throw response.statusText;
 
-  console.log(response.headers.status);
-  console.log(response.data.responseList[0]);
+  logger.data(response.data.responseList);
 
   return response.data.responseList[0].outString;
 };
