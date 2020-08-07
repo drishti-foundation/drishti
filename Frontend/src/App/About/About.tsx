@@ -1,24 +1,42 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
-import Profile from "./Profile";
-import AnimateIntoView from "./AnimateIntoView";
+import Button from '#shared/Button';
+import LoginOrSignUp from '#shared/LoginOrSignUp';
+import AccountDetails from '#shared/AccountDetails';
+import AuthContext from '#feathers/AuthContext';
 
-import banner from "./banner.jpg";
-import demo0 from "#pics/demo0.png";
-import demo1 from "#pics/demo1.png";
-import demo2 from "#pics/demo2.png";
-import groupImg from "#pics/group.jpg";
-import drishti from "#pics/drishti.png";
+import Profile from './Profile';
+import AnimateIntoView from './AnimateIntoView';
+
+import demo0 from '#pics/demo0.png';
+import demo1 from '#pics/demo1.png';
+import demo2 from '#pics/demo2.png';
+import groupImg from '#pics/group.jpg';
+import drishti from '#pics/drishti.png';
+import banner from './banner.jpg';
 
 function About() {
   const [showNav, setShowNav] = useState(false);
+  const [showLoginSignUp, setShowLoginSignUp] = useState(false);
+  const [showAccountDetails, setShowAccountDetails] = useState(false);
+
   const bannerRef = useRef<HTMLHeadingElement>(null);
+
+  const auth = useContext(AuthContext);
+
+  const authButtonClick = () => {
+    if (auth.loggedIn) {
+      setShowAccountDetails(true);
+    } else {
+      setShowLoginSignUp(true);
+    }
+  };
 
   useEffect(() => {
     if (bannerRef.current !== null) {
       const observer = new IntersectionObserver(
-        (entries) => {
+        entries => {
           setShowNav(entries[0].intersectionRatio < 0.1);
         },
         {
@@ -35,7 +53,9 @@ function About() {
 
   return (
     <div className="about">
-      <nav className={`nav-bar absolute-nav ${showNav ? "-show" : "-hide"}`} aria-hidden={!showNav}>
+      {showLoginSignUp && <LoginOrSignUp close={() => setShowLoginSignUp(false)} />}
+      {showAccountDetails && <AccountDetails close={() => setShowAccountDetails(false)} />}
+      <nav className={`nav-bar absolute-nav ${showNav ? '-show' : '-hide'}`} aria-hidden={!showNav}>
         <div className="img-wrapper">
           <img src={drishti} alt="drishti logo" />
         </div>
@@ -43,6 +63,7 @@ function About() {
           <Link className="btn" to="/demo" aria-label="Translate Now" tabIndex={showNav ? 0 : -1}>
             Translate Now
           </Link>
+          <Button name={auth.loggedIn ? 'Account' : 'Login'} onClick={authButtonClick} />
         </div>
       </nav>
       <header className="banner" ref={bannerRef}>
@@ -56,21 +77,21 @@ function About() {
       </header>
       <main className="content">
         <AnimateIntoView type="ul" className="stats">
-          <li className="info-card">
+          <li className="card">
             <div></div>
             {well}
             <h1>60%</h1>
             <p>of people live in rural India.</p>
             <div></div>
           </li>
-          <li className="info-card">
+          <li className="card">
             <div></div>
             {blind}
             <h1>22%</h1>
             <p>of all blind people in the world reside in India.</p>
             <div></div>
           </li>
-          <li className="info-card">
+          <li className="card">
             <div></div>
             {knowledge}
             <h1>10%</h1>
@@ -80,14 +101,15 @@ function About() {
         </AnimateIntoView>
         <AnimateIntoView type="section" className="text-block">
           <p className="paragraph">
-            Most of India&apos;s visually impaired live in rural India. Almost all of them do not have access to quality education in their
-            own language.
+            Most of India&apos;s visually impaired live in rural India. Almost all of them do not
+            have access to quality education in their own language.
           </p>
           <h2>This is where we come in.</h2>
           <p className="paragraph">
-            With Drishti, we aim to empower the visually impaired population with the gift of knowledge. Our software uses the Bharati
-            Braille convention to translate online books and PDFs to indigeous braille. In this way{" "}
-            <span className="highlight">Drishti</span> empowers the visually impaired to read in their own language.
+            With Drishti, we aim to empower the visually impaired population with the gift of
+            knowledge. Our software uses the Bharati Braille convention to translate online books
+            and PDFs to indigeous braille. In this way <span className="highlight">Drishti</span>{' '}
+            empowers the visually impaired to read in their own language.
           </p>
         </AnimateIntoView>
         <AnimateIntoView type="section" className="text-block gradient demo-section">
@@ -100,7 +122,12 @@ function About() {
               alt="uploading file by clicking on center of the screen, and send for processing"
               className="demo-img"
             />
-            <AnimateIntoView type="img" src={demo2} alt="download translated pdf" className="demo-img" />
+            <AnimateIntoView
+              type="img"
+              src={demo2}
+              alt="download translated pdf"
+              className="demo-img"
+            />
             <Link className="btn" to="/demo" aria-label="Translate Now">
               Translate Now
             </Link>
@@ -109,16 +136,23 @@ function About() {
         <AnimateIntoView type="section" className="text-block">
           <h1>About Us.</h1>
           <p className="paragraph">
-            We are a group of high school students from National Public School Indiranagar, Bangalore. We like to use our passion for
-            Computer Science to help improve the lives of the less fortunate.
+            We are a group of high school students from National Public School Indiranagar,
+            Bangalore. We like to use our passion for Computer Science to help improve the lives of
+            the less fortunate.
           </p>
           <br />
           <div className="pic-with-desc paragraph">
-            <img className="center" src={groupImg} title="Team behind Drishti at Revhack" alt="team behind Drishti at Revhack" />
+            <img
+              className="center"
+              src={groupImg}
+              title="Team behind Drishti at Revhack"
+              alt="team behind Drishti at Revhack"
+            />
             <p>
-              Revhack, India&apos;s first Language hackathon hosted by Reverie Language Technologies and NASSCOM, was centered on building a
-              system for solving problems in Indian Language Space. Our project <span className="highlight">Drishti</span> helped us place
-              first and bagged ₹1 lakh.
+              Revhack, India&apos;s first Language hackathon hosted by Reverie Language Technologies
+              and NASSCOM, was centered on building a system for solving problems in Indian Language
+              Space. Our project <span className="highlight">Drishti</span> helped us place first
+              and bagged ₹1 lakh.
             </p>
           </div>
           <AnimateIntoView type="ul" className="profile-wrapper">
@@ -163,7 +197,8 @@ function About() {
         <AnimateIntoView type="section" className="text-block gradient">
           <h1>Contact Us.</h1>
           <p className="paragraph">
-            Want to get into touch with us? Email <span className="email">mail.drishtifoundation@gmail.com</span> or click the link below!
+            Want to get into touch with us? Email{' '}
+            <span className="email">mail.drishtifoundation@gmail.com</span> or click the link below!
           </p>
           <button className="contact-btn" aria-label="Email us">
             <a href="mailto:mail.drishtifoundation@gmail.com" title="Contact Us">
@@ -179,7 +214,14 @@ function About() {
 export default About;
 
 const well = (
-  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 172 172">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    width="100"
+    height="100"
+    viewBox="0 0 172 172"
+  >
     <g
       fill="none"
       fillRule="nonzero"
@@ -194,7 +236,7 @@ const well = (
       fontWeight="none"
       fontSize="none"
       textAnchor="none"
-      style={{ mixBlendMode: "normal" }}
+      style={{ mixBlendMode: 'normal' }}
     >
       <path d="M0,172v-172h172v172z" fill="none"></path>
       <g>
@@ -205,7 +247,14 @@ const well = (
 );
 
 const blind = (
-  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="120" height="120" viewBox="0 0 172 172">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    width="120"
+    height="120"
+    viewBox="0 0 172 172"
+  >
     <g
       fill="none"
       fillRule="nonzero"
@@ -220,7 +269,7 @@ const blind = (
       fontWeight="none"
       fontSize="none"
       textAnchor="none"
-      style={{ mixBlendMode: "normal" }}
+      style={{ mixBlendMode: 'normal' }}
     >
       <path d="M0,172v-172h172v172z" fill="none"></path>
       <g>
@@ -231,7 +280,14 @@ const blind = (
 );
 
 const knowledge = (
-  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="120" height="120" viewBox="0 0 172 172">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    width="120"
+    height="120"
+    viewBox="0 0 172 172"
+  >
     <g
       fill="none"
       fillRule="nonzero"
@@ -246,7 +302,7 @@ const knowledge = (
       fontWeight="none"
       fontSize="none"
       textAnchor="none"
-      style={{ mixBlendMode: "normal" }}
+      style={{ mixBlendMode: 'normal' }}
     >
       <path d="M0,172v-172h172v172z" fill="none"></path>
       <g>

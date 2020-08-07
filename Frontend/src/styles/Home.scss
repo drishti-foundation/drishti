@@ -1,6 +1,6 @@
-@import "./variables";
+@import './variables';
 
-$disable: #aaaaaa;
+$disable: #b3b3b3;
 
 .demo {
   @include flex-box($just: flex-start, $dir: column);
@@ -46,7 +46,7 @@ $disable: #aaaaaa;
   @include trans(background-color);
 
   margin-top: 3vh;
-  padding: 0.9rem 1.8rem;
+  padding: 0.7rem 1.5rem;
   color: rgb(216, 216, 216);
   background-color: $lightbg;
   border-radius: 0.4vh;

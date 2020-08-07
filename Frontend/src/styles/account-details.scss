@@ -1,0 +1,42 @@
+.account-wrapper {
+  position: fixed;
+  height: var(--vh);
+  z-index: 100;
+  width: 100%;
+
+  .account-details {
+    position: absolute;
+    top: 6.4rem;
+    right: 0.3rem;
+    padding: 0.8rem 1.5rem;
+    background: $lbg;
+    box-shadow: 0.4rem 0.6rem 0.8rem #0000001a, -0.4rem -0.6rem 0.8rem #0000001a;
+    border-radius: 1rem;
+
+    .name {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+
+    hr {
+      background-color: #333333;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    * {
+      display: block;
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .account-details {
+      top: 0;
+      bottom: 5rem;
+    }
+  }
+}

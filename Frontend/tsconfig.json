@@ -7,13 +7,14 @@
     "baseUrl": ".",
     "rootDir": "./src",
     "paths": {
-      "~*": ["./src/*"],
+      "#*": ["./src/*"],
       "#styles/*": ["./src/styles/*"],
       "#shared/*": ["./src/shared/*"],
-      "#pics/*": ["./src/pics/*"]
+      "#pics/*": ["./src/pics/*"],
+      "#feathers/*": ["./src/feathers/*"]
     },
     "strict": true
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx", "global.d.ts", "./declarations.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["./node_modules"]
 }

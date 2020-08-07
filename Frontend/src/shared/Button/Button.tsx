@@ -1,14 +1,17 @@
-import React from "react";
+import React from 'react';
 
-interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+interface ButtonProps
+  extends React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   name: string;
-  className: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  className?: string;
 }
 
-function Button({ name, onClick, className = "", ...props }: ButtonProps) {
+function Button({ name, className = '', ...props }: ButtonProps) {
   return (
-    <button {...props} onClick={onClick} className={`btn ${className}`}>
+    <button {...props} className={`btn ${className}`}>
       {name}
     </button>
   );

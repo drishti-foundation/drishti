@@ -4,6 +4,10 @@ ecosystem.config.js
 
 public/
 build/
+dist/
+.cache/
+
+.env
 
 # Logs
 logs

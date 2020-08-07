@@ -48,7 +48,7 @@ $animtrans: 3rem;
     .btn {
       color: white;
       background-color: $lightbg;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       opacity: 0;
       animation: fade-down $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay forwards;
 
@@ -79,19 +79,19 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     overflow: visible;
 
     &.-hide {
-      .info-card {
+      .card {
         opacity: 0;
         transform: translateY(-$animtrans);
       }
     }
     &.-show {
-      .info-card {
+      .card {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    .info-card {
+    .card {
       @include flex-box($just: flex-start, $dir: column);
 
       width: 30vw;
@@ -104,7 +104,8 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
 
       @for $i from 0 to 3 {
         &:nth-child(#{$i + 1}) {
-          transition: opacity $animdur linear $animdelay * $i, transform $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay * $i;
+          transition: opacity $animdur linear $animdelay * $i,
+            transform $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay * $i;
         }
       }
 
@@ -168,6 +169,7 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
 
     font-size: 5.5rem;
     padding-left: (100vw - $max-width)/2;
+    color: currentColor;
   }
 
   .highlight {
@@ -196,7 +198,8 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     * {
       @for $i from 0 to 100 {
         &:nth-child(#{$i + 1}) {
-          transition: opacity $animdur linear $animdelay * $i, transform $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay * $i;
+          transition: opacity $animdur linear $animdelay * $i,
+            transform $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay * $i;
         }
       }
     }
@@ -211,10 +214,21 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
 
       background: transparent;
       border: 1px solid white;
+      box-shadow: none;
+      color: white;
 
       &:hover {
         background: transparent;
         box-shadow: 0.5rem 0.35rem 10px 4px #0000002d;
+      }
+
+      &:disabled {
+        border: 1px solid #adadad;
+        color: #dfdfdf;
+
+        &:hover {
+          box-shadow: none;
+        }
       }
     }
   }
@@ -290,7 +304,8 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
 
     @for $i from 0 to 5 {
       &:nth-child(#{$i + 1}) {
-        transition: opacity $animdur linear $animdelay * $i, transform $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay * $i;
+        transition: opacity $animdur linear $animdelay * $i,
+          transform $animdur cubic-bezier(0.215, 0.61, 0.355, 1) $animdelay * $i;
       }
     }
 
@@ -298,7 +313,7 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
     box-shadow: 0.4rem 0.6rem 0.8rem #0000001a;
     border-radius: 1rem;
     margin: 4rem 0;
-    background: #fafafa;
+    background: $lbg;
 
     h6 {
       font-size: 1.6rem;
@@ -451,7 +466,7 @@ $gradient: linear-gradient(to bottom right, $tl, $br);
       padding-bottom: 0;
       padding-top: 3rem;
 
-      .info-card {
+      .card {
         width: 80vw;
         padding: 2.6rem 0.4rem;
 

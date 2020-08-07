@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from 'react';
 
 type obj = {
   [key: string]: any;
@@ -8,6 +8,7 @@ interface AnimateIntoViewProps extends obj {
   children?: any;
   threshold?: number;
   type: keyof React.ReactHTML;
+  className: string;
 }
 
 function AnimateIntoView({
@@ -24,7 +25,7 @@ function AnimateIntoView({
     if (ref.current) {
       const observer = new IntersectionObserver(
         ([entry]) => {
-          setShow((show) => entry.isIntersecting || show);
+          setShow(show => entry.isIntersecting || show);
         },
         { threshold }
       );
@@ -39,7 +40,7 @@ function AnimateIntoView({
     type,
     {
       ...props,
-      className: classNames(className, show ? "-show" : "-hide"),
+      className: classNames(className, show ? '-show' : '-hide'),
       ref: ref,
     },
     children
@@ -49,4 +50,4 @@ function AnimateIntoView({
 export default AnimateIntoView;
 
 const classNames = (...props: (string | null | undefined)[]) =>
-  props.filter((c) => c !== null && c !== undefined).join(" ");
+  props.filter(c => c !== null && c !== undefined).join(' ');

@@ -91,12 +91,11 @@
   .checkbox {
     @include flex-box;
     @include trans(border);
-
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
     border-radius: 0.5vh;
     margin: 0;
-    margin-left: 2rem;
+    margin-right: 0.5rem;
     color: white;
     box-shadow: none;
     border: 1px solid transparent;
@@ -105,6 +104,15 @@
       cursor: pointer;
       border: 1px solid white;
       background-color: transparent;
+
+      &.disabled {
+        cursor: auto;
+        border: none;
+      }
+    }
+
+    &.disabled {
+      color: #cccccc;
     }
   }
 }

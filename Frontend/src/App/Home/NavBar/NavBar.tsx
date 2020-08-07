@@ -1,10 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
-import { Language } from "#shared/constants";
+import AuthContext from '#feathers/AuthContext';
+import { Language } from '#shared/constants';
 
-import Checkbox from "./Checkbox";
-import drishti from "#pics/drishti.png";
+import Checkbox from './Checkbox';
+
+import drishti from '#pics/drishti.png';
 
 interface NavBarProps {
   setEng: () => void;
@@ -13,6 +15,8 @@ interface NavBarProps {
 }
 
 function NavBar({ lang, setEng, setHin }: NavBarProps) {
+  const auth = useContext(AuthContext);
+
   return (
     <div className="nav-bar">
       <Link className="logo" to="/">
@@ -21,7 +25,12 @@ function NavBar({ lang, setEng, setHin }: NavBarProps) {
       </Link>
       <div className="btn-wrapper">
         <Checkbox name="English Braille" checked={lang === Language.Eng} onClick={setEng} />
-        <Checkbox name="Hindi Braille" checked={lang === Language.Hin} onClick={setHin} />
+        <Checkbox
+          name="Hindi Braille"
+          checked={lang === Language.Hin}
+          onClick={setHin}
+          locked={!auth.loggedIn}
+        />
       </div>
     </div>
   );
