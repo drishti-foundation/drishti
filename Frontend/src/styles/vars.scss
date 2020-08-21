@@ -1,0 +1,20 @@
+$background: #f6f6f6;
+$lbg: #fafafa;
+$lightbg: #174e88;
+$highlight: #0342be;
+$lightHighlight: #044dd6;
+
+$tl: #163495;
+$br: #1a7d8a;
+
+$gradient: linear-gradient(to bottom right, $tl, $br);
+$animdur: 0.5s;
+$animdelay: 0.3s;
+$animtrans: 3rem;
+
+@mixin flex-box($just: center, $align: center, $dir: row) {
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
+  flex-direction: $dir;
+}
