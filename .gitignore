@@ -2,10 +2,13 @@
 out.pdf
 ecosystem.config.js
 
-public/
+/public/
 build/
 dist/
 .cache/
+
+temp.ts
+validation.ts
 
 .env
 

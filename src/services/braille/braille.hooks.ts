@@ -21,7 +21,7 @@ export default {
           throw new BadRequest('Language not found: A language must be given as a query');
         } else if (!SUPPORTED_LANGS.has(params.query.lang)) {
           // Must have correct language
-          throw new BadRequest(`Unsupported language`, {
+          throw new BadRequest('Unsupported language', {
             languageGiven: params?.query?.lang,
             supportedLanguages: Array.from(SUPPORTED_LANGS),
           });

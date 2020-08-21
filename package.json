@@ -24,7 +24,7 @@
     "dev": "ts-node-dev --no-notify src/",
     "start": "yarn run compile && node lib/",
     "lint:backend": "eslint src/. --config .eslintrc --ext .ts --fix",
-    "lint:frontend": "eslint ./Frontend/src/**/*.{ts,tsx}",
+    "lint:frontend": "eslint ./Frontend/src/**/*.{ts,vue}",
     "lint": "yarn lint:backend && yarn lint:frontend",
     "build:backend": "shx rm -rf lib/ && tsc",
     "build:frontend": "cd Frontend && yarn build",
@@ -51,6 +51,7 @@
     "multer": "^1.4.2",
     "nanoid": "^3.1.12",
     "nedb": "^1.8.0",
+    "node-fetch": "^2.6.0",
     "serve-favicon": "^2.5.0",
     "textract": "^2.5.0",
     "winston": "^3.0.0"

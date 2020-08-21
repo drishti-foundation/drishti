@@ -2,7 +2,7 @@ import { HookContext } from '@feathersjs/feathers';
 import * as feathersAuthentication from '@feathersjs/authentication';
 import * as local from '@feathersjs/authentication-local';
 import { BadRequest } from '@feathersjs/errors';
-import { validate, iff } from 'feathers-hooks-common';
+import { validate } from 'feathers-hooks-common';
 
 import onlyAdmin from '../../hooks/onlyAdmin';
 
