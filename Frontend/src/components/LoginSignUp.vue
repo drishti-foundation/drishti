@@ -103,8 +103,8 @@ interface CData {
 }
 
 interface CMethods {
-  login: (credentials?: Credentials) => Promise<void>;
-  signup: (payload: SignUpPayload) => Promise<void>;
+  login: (credentials?: Credentials) => Promise<boolean>;
+  signup: (payload: SignUpPayload) => Promise<boolean>;
   handleSubmit: () => void;
 }
 
@@ -130,14 +130,17 @@ export default Vue.extend<CData, CMethods, CComputed, CProps>({
   }),
   methods: {
     ...mapActions(['login', 'signup']),
-    handleSubmit() {
+    async handleSubmit() {
       const credentials = { username: this.username.trim(), password: this.password.trim() };
+      let success = false;
       if (this.showLogin) {
-        this.login(credentials);
+        success = await this.login(credentials);
       } else {
-        this.signup({ credentials, otp: this.otp.trim() });
+        success = await this.signup({ credentials, otp: this.otp.trim() });
       }
-      this.$emit('close');
+      if (success) {
+        this.$emit('close');
+      }
     },
   },
   computed: {

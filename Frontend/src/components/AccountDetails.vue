@@ -24,7 +24,7 @@ import { mapState, mapActions } from 'vuex';
 
 interface CMethods {
   logoutAndClose: () => void;
-  logout: () => void;
+  logout: () => Promise<boolean>;
 }
 
 interface CComputed {
@@ -40,9 +40,10 @@ export default Vue.extend<{}, CMethods, CComputed, CProps>({
   name: 'account-details',
   methods: {
     ...mapActions(['logout']),
-    logoutAndClose() {
-      this.logout();
-      this.$emit('close');
+    async logoutAndClose() {
+      if (await this.logout()) {
+        this.$emit('close');
+      }
     },
   },
   computed: {

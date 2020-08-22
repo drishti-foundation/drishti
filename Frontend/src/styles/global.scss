@@ -117,6 +117,31 @@ input {
   }
 }
 
+.vue-notification-group {
+  margin-top: 6.4rem;
+}
+
+.vue-notification {
+  background: #2bc126;
+  border-left: 5px solid #1ea21a;
+  cursor: pointer;
+}
+
+.notification-title {
+  font-size: 1.1rem;
+  position: relative;
+
+  &::after {
+    content: '×';
+    position: absolute;
+    right: 0;
+  }
+}
+
+.notification-content {
+  font-size: 0.9rem;
+}
+
 @keyframes fade-down {
   from {
     opacity: 0;

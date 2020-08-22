@@ -83,11 +83,8 @@ export default Vue.extend<CData, CMethods, CComputed>({
   }),
   methods: {
     async changePassword() {
-      if (this.$store.dispatch('changePassword', this.newPassword)) {
+      if (await this.$store.dispatch('changePassword', this.newPassword)) {
         this.$router.back();
-      } else {
-        // eslint-disable-next-line no-alert
-        alert('Failed to change password');
       }
     },
   },
@@ -121,10 +118,6 @@ $greyed: #444444;
   box-shadow: 0.4rem 0.6rem 0.8rem #0000001a;
   width: min-content;
   border-radius: 1rem;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
-  // position: absolute;
 
   label {
     font-weight: 600;
@@ -142,6 +135,7 @@ $greyed: #444444;
     padding: 1ch;
     font-size: 1.1rem;
     border: 2px solid rgb(221, 221, 221);
+    width: 100%;
 
     &:focus {
       border: 2px solid black !important;
@@ -152,10 +146,13 @@ $greyed: #444444;
     }
   }
 }
+
 h3 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
+  width: max-content;
 }
+
 .password {
   @include flex-box(space-between);
   color: $greyed;

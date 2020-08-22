@@ -524,5 +524,9 @@ ul {
     max-width: 70vw;
     overflow-wrap: break-word;
   }
+
+  .contact-btn {
+    left: calc(15vw - 2rem);
+  }
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="app">
+    <notifications />
     <router-view />
   </div>
 </template>
@@ -23,7 +24,7 @@ export default Vue.extend({
 
 <style lang="scss" src="./styles/global.scss"></style>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import './styles/vars.scss';
 
 .app {

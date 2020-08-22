@@ -1,10 +1,11 @@
-/* eslint-disable no-alert */
 import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
 
 import client from './client';
 
 Vue.use(Vuex);
+
+const NOTIFICATION_DUR = 5000;
 
 interface User {
   _id: string;
@@ -14,7 +15,6 @@ interface User {
 interface AuthState {
   id: string | null;
   username: string | null;
-  error: any | null; // TODO proper error handling
   isLoading: boolean;
   client: typeof client;
 }
@@ -24,24 +24,16 @@ export default new Store<AuthState>({
     id: null,
     isLoading: true,
     username: null,
-    error: null,
     client
   },
   mutations: {
     setLoading(state, isLoading = true) {
       state.isLoading = isLoading;
     },
-    setError(state, error: any) {
-      state.isLoading = false;
-      state.username = null;
-      state.id = null;
-      state.error = error;
-    },
     setUser(state, user: User | null) {
       state.isLoading = false;
       state.username = user?.username ?? null;
       state.id = user?._id ?? null;
-      state.error = null;
     }
   },
   getters: {
@@ -64,16 +56,23 @@ export default new Store<AuthState>({
             strategy: 'local',
             ...credentials
           });
-          commit('setUser', user);
+          // Make sure auth popup is dismissed before switching to logged in state
+          setTimeout(() => commit('setUser', user), 100);
         }
+        return true;
       } catch (error) {
         if (credentials) {
-          console.error(error);
-          commit('setError', error);
-          alert('Failed to login');
+          commit('setUser', null);
+          Vue.notify({
+            title: 'Failed to login',
+            text: error.message,
+            type: 'error',
+            duration: NOTIFICATION_DUR
+          });
         } else {
           commit('setLoading', false);
         }
+        return false;
       }
     },
 
@@ -84,22 +83,37 @@ export default new Store<AuthState>({
         const user = await client.service('users').create(credentials, {
           query: { otp }
         });
-        commit('setUser', user);
+        // Make sure auth popup is dismissed before switching to logged in state
+        setTimeout(() => commit('setUser', user), 100);
+        return true;
       } catch (error) {
         console.error(error);
-        commit('setError', error);
-        alert('Failed to Sign Up');
+        commit('setUser', null);
+        Vue.notify({
+          title: 'Failed to sign up',
+          text: error.message,
+          type: 'error',
+          duration: NOTIFICATION_DUR
+        });
+        return false;
       }
     },
 
     async logout({ commit }) {
       try {
         await client.logout();
-        commit('setUser', null);
+        // Make sure auth popup is dismissed before switching to logged out state
+        setTimeout(() => commit('setUser', null), 100);
+        return true;
       } catch (error) {
         console.error(error);
-        commit('setEror', error);
-        alert('Failed to Logout');
+        Vue.notify({
+          title: 'Failed to logout',
+          text: error.message,
+          type: 'error',
+          duration: NOTIFICATION_DUR
+        });
+        return false;
       }
     },
 
@@ -108,9 +122,16 @@ export default new Store<AuthState>({
         const username = state.username ?? '';
         await client.service('users').update(state.id, { username, password });
         await dispatch('login', { username, password });
+        Vue.notify('Sucesfully changed password');
         return true;
       } catch (e) {
         console.error(e);
+        Vue.notify({
+          title: 'Failed to change password',
+          text: e.message,
+          type: 'error',
+          duration: NOTIFICATION_DUR
+        });
         return false;
       }
     }
