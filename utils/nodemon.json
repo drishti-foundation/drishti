@@ -1,6 +1,0 @@
-{
-  "watch": ["./build"],
-  "ext": "js",
-  "ignore": ["static"],
-  "exec": "NODE_ENV=development node ./build/server.js"
-}
