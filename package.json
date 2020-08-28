@@ -22,11 +22,11 @@
   },
   "scripts": {
     "dev": "ts-node-dev --no-notify src/",
-    "start": "yarn run compile && node lib/",
+    "start": "yarn build:backend && node build/",
     "lint:backend": "eslint src/. --config .eslintrc --ext .ts --fix",
     "lint:frontend": "eslint ./Frontend/src/**/*.{ts,vue}",
     "lint": "yarn lint:backend && yarn lint:frontend",
-    "build:backend": "shx rm -rf lib/ && tsc",
+    "build:backend": "shx rm -rf build/ && tsc",
     "build:frontend": "cd Frontend && yarn build",
     "build": "yarn build:backend && yarn build:frontend"
   },

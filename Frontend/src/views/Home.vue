@@ -126,7 +126,7 @@
           />
           <profile-card
             name="Vrishab Krishna"
-            role="Advisor"
+            role="Advisor and Mentor"
             imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936015179841543/IMG_1808.jpg"
             linkedinUrl="https://www.linkedin.com/in/vrishab/"
             githubUrl="https://github.com/VrishabKrishna"

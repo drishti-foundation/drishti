@@ -23,6 +23,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapState } from 'vuex';
 
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
 
@@ -35,7 +36,11 @@ interface CMethods {
   generateOTP: () => void;
 }
 
-export default Vue.extend<CData, CMethods, {}>({
+interface CComputed {
+  username: string | null;
+}
+
+export default Vue.extend<CData, CMethods, CComputed>({
   name: 'admin',
   data: () => ({
     otp: null,
@@ -47,6 +52,12 @@ export default Vue.extend<CData, CMethods, {}>({
       this.otp = (await this.$store.state.client.service('admin-func').get('otp')).otp;
       this.isLoading = false;
     },
+  },
+  computed: mapState(['username']),
+  mounted() {
+    if (this.username !== 'admin') {
+      this.$router.push('/');
+    }
   },
   components: {
     LoadingSpinner,

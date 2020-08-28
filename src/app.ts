@@ -18,6 +18,8 @@ import authentication from './authentication';
 
 const app: Application = express(feathers());
 
+const FRONTEND_ROUTES = ['/', '/admin', '/demo', '/change-password'];
+
 // Load app configuration
 app.configure(configuration());
 // Enable security, CORS, compression, favicon and body parsing
@@ -28,7 +30,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
-app.use(['/', '/about', '/demo'], express.static(app.get('public')));
+
+FRONTEND_ROUTES.forEach(route => {
+  app.use(route, express.static(app.get('public')));
+});
 
 // Set up Plugins and providers
 app.configure(express.rest());

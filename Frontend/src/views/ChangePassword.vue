@@ -57,6 +57,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapGetters } from 'vuex';
 
 interface CData {
   newPassword: string;
@@ -71,6 +72,7 @@ interface CMethods {
 
 interface CComputed {
   isValid: boolean;
+  isLoggedin: boolean;
 }
 
 export default Vue.extend<CData, CMethods, CComputed>({
@@ -89,9 +91,15 @@ export default Vue.extend<CData, CMethods, CComputed>({
     },
   },
   computed: {
+    ...mapGetters(['isLoggedin']),
     isValid() {
       return this.newPassword.trim().length !== 0 && this.newPassword === this.confirmPassword;
     },
+  },
+  mounted() {
+    if (!this.isLoggedin) {
+      this.$router.push('/');
+    }
   },
 });
 </script>
