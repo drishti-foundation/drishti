@@ -39,7 +39,7 @@ const translate = async (text: string) => {
 
   if (response.status !== 200) throw response.statusText;
 
-  logger.data(response.data.responseList);
+  logger.info(`Got response: ${JSON.stringify(response.data.responseList, null, 2)}`);
 
   return response.data.responseList[0].outString;
 };
