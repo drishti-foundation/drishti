@@ -13,4 +13,8 @@ export default (app: Application) => {
   app.configure(users(otpHandler));
   app.configure(braille());
   app.configure(adminFunc(otpHandler));
+
+  app.get('/downloads/:name', (req, res) => {
+    res.download(path.resolve('downloads', req.params.name));
+  });
 };
