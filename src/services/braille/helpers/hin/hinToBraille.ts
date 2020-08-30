@@ -34,7 +34,7 @@ const hinToBraille = (s: string) => {
         // Halant comes before
         text = text.slice(0, i - 1) + text[i] + text[i - 1] + text.slice(i + 1);
     } else {
-      text += s[i];
+      text += '?';
     }
   }
   return text;
