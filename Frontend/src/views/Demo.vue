@@ -48,8 +48,8 @@
       >
         Submit
       </button>
-      <p className="file-name">{{ progress }}</p>
-      <a v-if="downloadLink.length" download className="gbtn" :href="`/${downloadLink}`">
+      <p class="file-name">{{ progress }}</p>
+      <a v-if="downloadLink.length" download class="gbtn" :href="`/${downloadLink}`">
         Download
       </a>
     </main>
@@ -94,21 +94,45 @@ export default Vue.extend<CData, CMethods, CComputed>({
   methods: {
     async convertPDF() {
       if (this.file === null) return;
+      try {
+        const data = new FormData();
 
-      const data = new FormData();
+        data.append('file', this.file);
 
-      data.append('file', this.file);
+        this.progress = 'Converting...';
+        this.downloadLink = '';
 
-      this.progress = 'Converting...';
+        const headers: { [key: string]: any } = {};
 
-      const { route: downloadRoute } = await client.service('braille').create(data, {
-        query: {
-          lang: this.lang,
-        },
-      });
+        const jwt = await client.authentication.getAccessToken();
 
-      this.progress = '';
-      this.downloadLink = downloadRoute;
+        if (jwt) {
+          headers.Authorization = `Bearer ${jwt}`;
+        }
+
+        const response = await fetch(`/braille?lang=${this.lang}`, {
+          method: 'POST',
+          body: data,
+          headers,
+        });
+
+        const resJSON = await response.json();
+
+        if (!response.ok) {
+          throw resJSON;
+        }
+
+        this.progress = '';
+        this.downloadLink = resJSON.route;
+      } catch (e) {
+        console.error(e);
+        this.progress = '';
+        this.$notify({
+          title: 'Failed to convert',
+          text: e.message,
+          type: 'error',
+        });
+      }
     },
     addFile([file]) {
       this.file = file ?? null;
