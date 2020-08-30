@@ -1,5 +1,7 @@
 // Application hooks that run for every service
 
+import { HookContext } from '@feathersjs/feathers';
+
 export default {
   before: {
     all: [],
@@ -22,7 +24,13 @@ export default {
   },
 
   error: {
-    all: [],
+    all: [
+      ({ error }: HookContext) => {
+        if (process.env.NODE_ENV === 'production' && error.stack) {
+          delete error.stack;
+        }
+      },
+    ],
     find: [],
     get: [],
     create: [],
