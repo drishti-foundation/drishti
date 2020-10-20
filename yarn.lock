@@ -1855,6 +1855,14 @@ globals@^12.1.0:
   dependencies:
     type-fest "^0.8.1"
 
+googletrans@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/googletrans/-/googletrans-1.0.0.tgz#26a1f7e75a3bd584eff509f3f99b54c99c579a0b"
+  integrity sha512-gJr4wanUM3hOeX/KGUA19UoBK4C21+iHCa2tedMp5HEUBIojymfa5YvtDSK686kkXA8dN1lffj6NDv/hPybwVQ==
+  dependencies:
+    axios "^0.19.2"
+    qs "^6.9.3"
+
 got@5.7.1:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-5.7.1.tgz#5f81635a61e4a6589f180569ea4e381680a51f35"
@@ -3069,7 +3077,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.5.1, qs@^6.9.1:
+qs@^6.5.1, qs@^6.9.1, qs@^6.9.3:
   version "6.9.4"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
   integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==

@@ -12,8 +12,12 @@ export const read = (buffer: Buffer): Promise<string> =>
 
 export const write = (text: string, fileName: string): Promise<void> =>
   new Promise((res, rej) => {
+    let newline_text = "";
+    for (let i = 0; i < text.length; i += 50) {
+        newline_text += text.slice(i, i + 50) + '<br>';
+    }
     pdf
-      .create(`<h1>Braille</h1><p>${text}</p>`)
+      .create(`<h1>Braille</h1><p>${newline_text}</p>`)
       .toFile(path.resolve('downloads', fileName), (err: any) => {
         if (err) rej(err);
         res();

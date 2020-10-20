@@ -29,12 +29,9 @@ const hinToBraille = (s: string) => {
     if (mapHinToBraille.has(s[i])) {
       const bin = mapHinToBraille.get(s[i]) ?? '?';
       text += binStrBraille(bin);
-
-      if (bin === '000100')
-        // Halant comes before
-        text = text.slice(0, i - 1) + text[i] + text[i - 1] + text.slice(i + 1);
-    } else {
-      text += '?';
+      // if (bin === '000100')
+      //   // Halant comes before
+      //   text = text.slice(0, i - 1) + text[i] + text[i - 1] + text.slice(i + 1);
     }
   }
   return text;

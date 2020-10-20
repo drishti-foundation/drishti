@@ -16,7 +16,6 @@
         <check-box
           name="Hindi Braille"
           :checked="lang === Language.Hin"
-          :locked="!isLoggedin"
           @click="lang = Language.Hin"
         />
       </div>

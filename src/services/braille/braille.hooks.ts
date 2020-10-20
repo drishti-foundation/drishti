@@ -29,17 +29,17 @@ export default {
 
         return context;
       },
-      iff(
-        context => context.params.anonymous === true,
-        context => {
-          const { query } = context.params;
+      // iff(
+      //   context => context.params.anonymous === true,
+      //   context => {
+      //     const { query } = context.params;
 
-          if (query?.lang === 'hi') {
-            throw new Forbidden('hi only supported for account holders');
-          }
-          return context;
-        }
-      ),
+      //     if (query?.lang === 'hi') {
+      //       throw new Forbidden('hi only supported for account holders');
+      //     }
+      //     return context;
+      //   }
+      // ),
     ],
     find: [disallow()],
     get: [disallow()],
