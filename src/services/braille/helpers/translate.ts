@@ -55,7 +55,7 @@ import logger from '../../../logger';
 
 const translate = async (text: string) => {
   logger.info(`Translating text: ${text}`);
-  const res = await tr(text, "hi");
+  const res = await tr(text, {from : "en" , to : "hi"});
 
   logger.info(`Got text: ${JSON.stringify(res.text, null, 2)}`);
   return res.text;
