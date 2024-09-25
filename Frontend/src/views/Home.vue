@@ -84,9 +84,9 @@
         <div class="pic-with-desc paragraph">
           <img
             class="center"
-            src="@/assets/group.jpg"
-            title="Team behind Drishti at Revhack"
-            alt="team behind Drishti at Revhack"
+            src="@/assets/presentation.jpg"
+            title="Drishti at Revhack"
+            alt="Drishti at Revhack"
           />
           <p>
             Revhack, India&apos;s first Language hackathon hosted by Reverie Language Technologies
@@ -97,39 +97,11 @@
         </div>
         <animate-into-view type="ul" class="profile-wrapper">
           <profile-card
-            name="Abhinav Chinta"
+            name="Anirudh Chinta"
             role="Founder"
-            imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727939022223179786/IMG_1812.jpg"
-            linkedinUrl="https://www.linkedin.com/in/abhinav-chinta-52a207194/"
+            imgUrl="@/assets/anirudh.png"
+            linkedinUrl="https://www.linkedin.com/in/anirudh-chinta-6082012a7"
             githubUrl="https://github.com/abhinav-chinta"
-          />
-          <profile-card
-            name="Anand Balivada"
-            role="Braille Engine Developer"
-            imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727938408491778118/IMG_20200701_225710.JPG"
-            linkedinUrl="https://www.linkedin.com/in/anand-balivada-a46215194"
-            githubUrl="https://github.com/Poincare057"
-          />
-          <profile-card
-            name="Anirudh Sathiya"
-            role="Braille Engine Developer"
-            imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936014085128232/IMG_1809.jpg"
-            linkedinUrl="https://www.linkedin.com/in/holaamigos/"
-            githubUrl="https://github.com/Anirudh171202"
-          />
-          <profile-card
-            name="Luv Singhal"
-            role="UI designer and Developer"
-            imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936012986351738/IMG_1807.jpg"
-            linkedinUrl="https://www.linkedin.com/in/luv-s-28035619b/"
-            githubUrl="https://github.com/Lutetium-Vanadium"
-          />
-          <profile-card
-            name="Vrishab Krishna"
-            role="Advisor"
-            imgUrl="https://cdn.discordapp.com/attachments/713065974303162381/727936015179841543/IMG_1808.jpg"
-            linkedinUrl="https://www.linkedin.com/in/vrishab/"
-            githubUrl="https://github.com/VrishabKrishna"
           />
         </animate-into-view>
       </animate-into-view>
