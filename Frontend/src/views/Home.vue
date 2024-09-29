@@ -99,7 +99,7 @@
           <profile-card
             name="Anirudh Chinta"
             role="Founder"
-            imgUrl="@/assets/anirudh.png"
+            :imgUrl="require('@/assets/anirudh.png')"
             linkedinUrl="https://www.linkedin.com/in/anirudh-chinta-6082012a7"
             githubUrl="https://github.com/abhinav-chinta"
           />
