@@ -76,7 +76,7 @@
       <animate-into-view type="section" class="text-block">
         <h1>About Us.</h1>
         <p class="paragraph">
-          Drishti, developed by Anirudh China, an 11th grader from TISB,
+          Drishti, developed by Anirudh Chinta, an 11th grader from TISB,
           provides quality education for underprivileged visually impaired children.
           By creating accessible learning materials and using technology, 
           it empowers these students and fosters an inclusive educational environment which aims to improve their lives.
