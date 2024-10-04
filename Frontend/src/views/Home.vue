@@ -76,9 +76,10 @@
       <animate-into-view type="section" class="text-block">
         <h1>About Us.</h1>
         <p class="paragraph">
-          We are a group of high school students from National Public School Indiranagar, Bangalore.
-          We like to use our passion for Computer Science to help improve the lives of the less
-          fortunate.
+          Drishti, developed by Anirudh China, an 11th grader from TISB,
+          provides quality education for underprivileged visually impaired children.
+          By creating accessible learning materials and using technology, 
+          it empowers these students and fosters an inclusive educational environment which aims to improve their lives.
         </p>
         <br />
         <div class="pic-with-desc paragraph">
@@ -89,10 +90,9 @@
             alt="Drishti at Revhack"
           />
           <p>
-            Revhack, India&apos;s first Language hackathon hosted by Reverie Language Technologies
-            and NASSCOM, was centered on building a system for solving problems in Indian Language
-            Space. Our project <span class="highlight">Drishti</span> helped us place first and
-            bagged ₹1 lakh.
+           Drishti is in the implementation stage, providing quality education to underprivileged blind children through accessible materials and technology. 
+          Its recent presentation at UC Berkeley garnered valuable insights and positive reactions from judges, who praised its innovative approach and scalability. 
+          This feedback reinforces Drishti's mission to create a more inclusive educational landscape for visually impaired students.
           </p>
         </div>
         <animate-into-view type="ul" class="profile-wrapper">
