@@ -101,7 +101,7 @@
             role="Founder"
             :imgUrl="require('@/assets/anirudh.png')"
             linkedinUrl="https://www.linkedin.com/in/anirudh-chinta-6082012a7"
-            githubUrl="https://github.com/abhinav-chinta"
+            githubUrl="https://github.com/Anirudh4463"
           />
         </animate-into-view>
       </animate-into-view>
