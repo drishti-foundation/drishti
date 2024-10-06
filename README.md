@@ -37,8 +37,9 @@ Getting up and running is as easy as 1, 2, 3.
     3. npm run build.
     4. Once completed it is going to create a public folder 
     5. Checkout branch gh-pages in different checkout
-    6. Copy the content of public directory as is to gh-pages code.
-    7. Once commited , the github deployment will trigger and the latest code changes will be visible here https://drishti.foundation/
+    6. Copy the content of public directory as is to gh-pages code branch.
+    7. Commit the changes in gh-pages branch.
+    8. Once commited , the github deployment will trigger and the latest code changes will be visible here https://drishti.foundation/
 
 ## Testing
 
